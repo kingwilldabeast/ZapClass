@@ -33,7 +33,7 @@ Shows will have a many to one relationship with venues. Each is run at one venue
 7. AAUIWT add headshot links or video links from existing webpages to a comedian profile.
 2. AAUIWT filter by day of week.
 3. AAUIWT filter by open mic or show.
-8. AAUIWT click on a show, mic, comedian, or venue and see an expaned page with extra details.
+8. AAUIWT click on a show, mic, comedian, or venue and see an expanded page with extra details.
 1. AAUIWT have the show frequency calculate and display the date of the next occurence of the show. 
 
 ## ERD 
