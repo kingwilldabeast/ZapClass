@@ -1,5 +1,5 @@
 const {Event} = require('../models'); //with models/index.js file
-//const Event = require('../models/Event'); //without models/index.js file
+//const Event = require('../models/event'); //without models/index.js file
 
 //Read
 const getAllEvents = async (req, res) => {
@@ -27,6 +27,10 @@ const getEventById = async (req, res) => {
         return res.status(500).send(error.message);
     }
 }
+
+
+//get attributes
+//like the events held array?
 
 //create
 const createEvent = async (req, res) => {

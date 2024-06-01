@@ -1,0 +1,127 @@
+
+
+body {
+    /* background-color: #626C66; */
+    /* background-image: url('pokemon1.jpeg'); */
+    background-color: #ACA885;
+    background-repeat: repeat;
+    background-size: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+    
+}
+
+h1 {
+    /* border: 1px solid #E1CA96; */
+    /* color: #E1CA96; */
+    color: #ACA885;
+    border-radius: 10px;
+    background-color: #434A42;
+    padding: 10px;
+    font-family: "Major Mono Display", monospace;
+    font-weight: 400;
+    font-style: normal;
+   
+}
+
+/* .header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+} */
+
+/* #inputBar {
+    background-color: #E1CA96;
+    border-radius: 5px;
+}
+
+#searchButton {
+    background-color: #626C66;
+    border-radius: 5px;
+} */
+
+/* #bikeDropdown {
+    /* display: none; 
+    background-color: #E1CA96;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); 
+    border-radius: 5px;
+} */
+
+main {
+    width: auto;
+    /* height: 500px; */
+    border: 1px solid red;
+    background-color: #918B76;
+    border-radius: 10px;
+    display: flex;
+    margin: 10px;
+    padding: 2px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start; 
+    justify-content: space-around;
+}
+
+.day-container {
+    border: 1px solid orange;
+    border-radius: 10px;
+    width: 1100px;
+}
+
+.day-title {
+    border: 1px solid yellow;
+    border-radius: 10px;
+    margin: 10px;
+    text-align: center;
+}
+
+.shows-container {
+    /* display: none; */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center; 
+    justify-content: center;
+    border: 1px solid rgb(37, 228, 69);
+    margin: 10px;
+
+}
+
+.show-card {
+    width: 300px;
+    height: 300px;
+    border: 1px solid blue;
+    border-radius: 10px;
+    background-color: #626C66;
+    /* background-color: #918B76; */
+    /* background-color: #ACA885; */
+    margin: 10px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+    cursor: pointer;
+}
+
+.image-container {
+    width: 150px;
+    height: 150px;
+    border: 1px solid rgb(139, 65, 236);
+    border-radius: 10px;
+}
+
+/* .show-name {
+    border: 1px solid blue;
+    margin-top: 30px;
+    font-size: 20px;
+    color: #E1CA96;
+    background-color: #ACA885;
+    font-family: "Major Mono Display", monospace;
+    font-weight: 400;
+    font-style: normal;
+} */
+

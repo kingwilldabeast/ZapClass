@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comedy</title>
+    <!-- <link href="https://fonts.googleapis.com/css?family=Inconsolata:700|Play" rel="stylesheet"> -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script defer src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div>
+        <span>
+
+            <h1 id="head">Comedy Directory</h1>
+        </span>
+        <span>
+            
+            <!-- <form>
+                <input type="text"  value="" placeholder="Search brand name!"  id="inputBar">
+                <input type="button"  value="Search" id="searchButton">
+            </form> -->
+
+
+        </span>
+        
+    </div>
+    <main>
+        <div class="day-container">
+            <div class="day-title" id="Sunday">Sunday</div>
+            <div class="shows-container">
+                <div class="show-card">
+                    <div class="image-container"><img class="show-logo"/></div>
+                    <div class="show-name">Laughs Improv</div>
+                    <div class="show-type">show</div>
+                    <div class="show-location">123 Main St</div>
+                    <div class="show-time">7 PM</div>
+                    <div class="show-weekday">Friday</div>
+                    <div class="show-frequency">weekly</div>
+                    <div class="show-details">Sign up in person</div>
+                    <div class="show-link">laughs.com</div>
+                </div>
+                <div class="show-card">
+                    <div class="image-container"><img class="show-logo"/></div>
+                    <div class="show-name">Laughs Improv</div>
+                    <div class="show-type">show</div>
+                    <div class="show-location">123 Main St</div>
+                    <div class="show-time">7 PM</div>
+                    <div class="show-weekday">Friday</div>
+                    <div class="show-frequency">weekly</div>
+                    <div class="show-details">Sign up in person</div>
+                    <div class="show-link">laughs.com</div>
+                </div>
+                <div class="show-card">
+                    <div class="image-container"><img class="show-logo"/></div>
+                    <div class="show-name">Laughs Improv</div>
+                    <div class="show-type">show</div>
+                    <div class="show-location">123 Main St</div>
+                    <div class="show-time">7 PM</div>
+                    <div class="show-weekday">Friday</div>
+                    <div class="show-frequency">weekly</div>
+                    <div class="show-details">Sign up in person</div>
+                    <div class="show-link">laughs.com</div>
+                </div>
+                <div class="show-card">
+                    <div class="image-container"><img class="show-logo"/></div>
+                    <div class="show-name">Laughs Improv</div>
+                    <div class="show-type">show</div>
+                    <div class="show-location">123 Main St</div>
+                    <div class="show-time">7 PM</div>
+                    <div class="show-weekday">Friday</div>
+                    <div class="show-frequency">weekly</div>
+                    <div class="show-details">Sign up in person</div>
+                    <div class="show-link">laughs.com</div>
+                </div>
+                <div class="show-card">
+                    <div class="image-container"><img class="show-logo"/></div>
+                    <div class="show-name">Laughs Improv</div>
+                    <div class="show-type">show</div>
+                    <div class="show-location">123 Main St</div>
+                    <div class="show-time">7 PM</div>
+                    <div class="show-weekday">Friday</div>
+                    <div class="show-frequency">weekly</div>
+                    <div class="show-details">Sign up in person</div>
+                    <div class="show-link">laughs.com</div>
+                </div>
+                <div class="show-card">
+                    <div class="image-container"><img class="show-logo"/></div>
+                    <div class="show-name">Laughs Improv</div>
+                    <div class="show-type">show</div>
+                    <div class="show-location">123 Main St</div>
+                    <div class="show-time">7 PM</div>
+                    <div class="show-weekday">Friday</div>
+                    <div class="show-frequency">weekly</div>
+                    <div class="show-details">Sign up in person</div>
+                    <div class="show-link">laughs.com</div>
+                </div>
+                <div class="show-card">
+                    <div class="image-container"><img class="show-logo"/></div>
+                    <div class="show-name">Laughs Improv</div>
+                    <div class="show-type">show</div>
+                    <div class="show-location">123 Main St</div>
+                    <div class="show-time">7 PM</div>
+                    <div class="show-weekday">Friday</div>
+                    <div class="show-frequency">weekly</div>
+                    <div class="show-details">Sign up in person</div>
+                    <div class="show-link">laughs.com</div>
+                </div>
+            </div>
+        </div>
+        <div class="day-container">
+            <div class="day-title" id="Monday">Monday</div>
+            <div class="shows-container">
+                <div class="show-card">
+                    <div class="image-container"><img class="show-logo"/></div>
+                    <div class="show-name">Laughs Improv</div>
+                    <div class="show-type">show</div>
+                    <div class="show-location">123 Main St</div>
+                    <div class="show-time">7 PM</div>
+                    <div class="show-weekday">Friday</div>
+                    <div class="show-frequency">weekly</div>
+                    <div class="show-details">Sign up in person</div>
+                    <div class="show-link">laughs.com</div>
+                </div>
+                <div class="show-card">
+                    <div class="image-container"><img class="show-logo"/></div>
+                    <div class="show-name">Laughs Improv</div>
+                    <div class="show-type">show</div>
+                    <div class="show-location">123 Main St</div>
+                    <div class="show-time">7 PM</div>
+                    <div class="show-weekday">Friday</div>
+                    <div class="show-frequency">weekly</div>
+                    <div class="show-details">Sign up in person</div>
+                    <div class="show-link">laughs.com</div>
+                </div>
+                <div class="show-card">
+                    <div class="image-container"><img class="show-logo"/></div>
+                    <div class="show-name">Laughs Improv</div>
+                    <div class="show-type">show</div>
+                    <div class="show-location">123 Main St</div>
+                    <div class="show-time">7 PM</div>
+                    <div class="show-weekday">Friday</div>
+                    <div class="show-frequency">weekly</div>
+                    <div class="show-details">Sign up in person</div>
+                    <div class="show-link">laughs.com</div>
+                </div>
+                <div class="show-card">
+                    <div class="image-container"><img class="show-logo"/></div>
+                    <div class="show-name">Laughs Improv</div>
+                    <div class="show-type">show</div>
+                    <div class="show-location">123 Main St</div>
+                    <div class="show-time">7 PM</div>
+                    <div class="show-weekday">Friday</div>
+                    <div class="show-frequency">weekly</div>
+                    <div class="show-details">Sign up in person</div>
+                    <div class="show-link">laughs.com</div>
+                </div>
+                <div class="show-card">
+                    <div class="image-container"><img class="show-logo"/></div>
+                    <div class="show-name">Laughs Improv</div>
+                    <div class="show-type">show</div>
+                    <div class="show-location">123 Main St</div>
+                    <div class="show-time">7 PM</div>
+                    <div class="show-weekday">Friday</div>
+                    <div class="show-frequency">weekly</div>
+                    <div class="show-details">Sign up in person</div>
+                    <div class="show-link">laughs.com</div>
+                </div>
+                <div class="show-card">
+                    <div class="image-container"><img class="show-logo"/></div>
+                    <div class="show-name">Laughs Improv</div>
+                    <div class="show-type">show</div>
+                    <div class="show-location">123 Main St</div>
+                    <div class="show-time">7 PM</div>
+                    <div class="show-weekday">Friday</div>
+                    <div class="show-frequency">weekly</div>
+                    <div class="show-details">Sign up in person</div>
+                    <div class="show-link">laughs.com</div>
+                </div>
+                <div class="show-card">
+                    <div class="image-container"><img class="show-logo"/></div>
+                    <div class="show-name">Laughs Improv</div>
+                    <div class="show-type">show</div>
+                    <div class="show-location">123 Main St</div>
+                    <div class="show-time">7 PM</div>
+                    <div class="show-weekday">Friday</div>
+                    <div class="show-frequency">weekly</div>
+                    <div class="show-details">Sign up in person</div>
+                    <div class="show-link">laughs.com</div>
+                </div>
+            </div>
+        </div>
+        <div class="day-container">
+            <div class="day-title" id="Tuesday">Tuesday</div>
+            <div class="shows-container">
+                <div class="show-card">
+                    <div class="image-container"><img class="show-logo"/></div>
+                    <div class="show-name">Laughs Improv</div>
+                    <div class="show-type">show</div>
+                    <div class="show-location">123 Main St</div>
+                    <div class="show-time">7 PM</div>
+                    <div class="show-weekday">Friday</div>
+                    <div class="show-frequency">weekly</div>
+                    <div class="show-details">Sign up in person</div>
+                    <div class="show-link">laughs.com</div>
+                </div>
+            </div>
+        </div>
+        <div class="day-container">
+            <div class="day-title" id="Wednesday">Wednesday</div>
+            <div class="shows-container">
+                <div class="show-card">
+                    <div class="image-container"><img class="show-logo"/></div>
+                    <div class="show-name">Laughs Improv</div>
+                    <div class="show-type">show</div>
+                    <div class="show-location">123 Main St</div>
+                    <div class="show-time">7 PM</div>
+                    <div class="show-weekday">Friday</div>
+                    <div class="show-frequency">weekly</div>
+                    <div class="show-details">Sign up in person</div>
+                    <div class="show-link">laughs.com</div>
+                </div>
+            </div>
+        </div>
+        <div class="day-container">
+            <div class="day-title" id="Thursday">Thursday</div>
+            <div class="shows-container">
+                <div class="show-card">
+                    <div class="image-container"><img class="show-logo"/></div>
+                    <div class="show-name">Laughs Improv</div>
+                    <div class="show-type">show</div>
+                    <div class="show-location">123 Main St</div>
+                    <div class="show-time">7 PM</div>
+                    <div class="show-weekday">Friday</div>
+                    <div class="show-frequency">weekly</div>
+                    <div class="show-details">Sign up in person</div>
+                    <div class="show-link">laughs.com</div>
+                </div>
+            </div>
+        </div>
+        <div class="day-container">
+            <div class="day-title" id="Friday">Friday</div>
+            <div class="shows-container">
+                <div class="show-card">
+                    <div class="image-container"><img class="show-logo"/></div>
+                    <div class="show-name">Laughs Improv</div>
+                    <div class="show-type">show</div>
+                    <div class="show-location">123 Main St</div>
+                    <div class="show-time">7 PM</div>
+                    <div class="show-weekday">Friday</div>
+                    <div class="show-frequency">weekly</div>
+                    <div class="show-details">Sign up in person</div>
+                    <div class="show-link">laughs.com</div>
+                </div>
+            </div>
+        </div>
+        <div class="day-container">
+            <div class="day-title" id="Saturday">Saturday</div>
+            <div class="shows-container">
+                <div class="show-card">
+                    <div class="image-container"><img class="show-logo"/></div>
+                    <div class="show-name">Laughs Improv</div>
+                    <div class="show-type">show</div>
+                    <div class="show-location">123 Main St</div>
+                    <div class="show-time">7 PM</div>
+                    <div class="show-weekday">Friday</div>
+                    <div class="show-frequency">weekly</div>
+                    <div class="show-details">Sign up in person</div>
+                    <div class="show-link">laughs.com</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    
+    
+</body>
+</html>
