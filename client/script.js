@@ -10,7 +10,7 @@ let brandIDArray = []
 
 let eventObjectArray = []
 let comicObjectArray = []
-let venueOjbectArray = []
+let venueObjectArray = []
 
 /*------------------------ Cached Element References ------------------------*/
 
@@ -36,6 +36,9 @@ let showContainers = document.querySelectorAll(".shows-container")
 async function refresh() {
     
     eventObjectArray = []
+    comicObjectArray = []
+    venueObjectArray = []
+
     sundayShows.innerHTML = "";
     mondayShows.innerHTML = "";
     tuesdayShows.innerHTML = "";
@@ -45,12 +48,17 @@ async function refresh() {
     saturdayShows.innerHTML = "";
 
       try {
-        // let response = await axios.get(`http://localhost:3001/brands/${input}`);
-        let response = await axios.get(`http://localhost:3001/events`);
-        // console.log(response.data); // Log the data received from the API
+        let eventResponse = await axios.get(`http://localhost:3001/events`);
+        let comicResponse = await axios.get(`http://localhost:3001/comics`);
+        let venueResponse = await axios.get(`http://localhost:3001/venues`);
+        // console.log(eventResponse.data); // Log the data received from the API
         
-        eventObjectArray = response.data //assuming it's an array
+        eventObjectArray = eventResponse.data //assuming it's an array
+        comicObjectArray = comicResponse.data //assuming it's an array
+        venueObjectArray = venueResponse.data //assuming it's an array
         console.log(eventObjectArray)
+        console.log(comicObjectArray)
+        console.log(venueObjectArray)
             
         for (const eventObject of eventObjectArray) {
     
@@ -103,7 +111,23 @@ async function refresh() {
             newLink.classList.add('show-link')
             newLink.innerText = eventObject.link
             newCard.appendChild(newLink)
+
+            for (const hostObjectID of eventObject.hosts) {
+                const newHost = document.createElement('div');
+                newHost.classList.add('show-host')
+                const comicObject = comicObjectArray.find(obj => obj._id.toString() === hostObjectID);
+                newHost.innerText = `Hosts: ${comicObject.name}`
+                // const index = comicObjectArray.findIndex(obj => obj._id.toString() === hostObjectID);
+                // newHost.innerText = comicObjectArray[index].name
+                newCard.appendChild(newHost)
+            }
     
+            const newVenue = document.createElement('div');
+            newVenue.classList.add('show-link')
+            const venueObject = venueObjectArray.find(obj => obj._id.toString() === eventObject.venue);
+            newVenue.innerText = `Venue: ${venueObject.name}`
+            newCard.appendChild(newVenue)
+
             // const newBicycleLink = document.createElement('a');
             // newBicycleLink.href = 'parkerBicycle.html';
             // newBicycleLink.target = '_blank'; 
