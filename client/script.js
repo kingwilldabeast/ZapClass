@@ -36,7 +36,14 @@ let showContainers = document.querySelectorAll(".shows-container")
 async function refresh() {
     
     eventObjectArray = []
-    sundayShows.innerHTML = ""
+    sundayShows.innerHTML = "";
+    mondayShows.innerHTML = "";
+    tuesdayShows.innerHTML = "";
+    wednesdayShows.innerHTML = "";
+    thursdayShows.innerHTML = "";
+    fridayShows.innerHTML = "";
+    saturdayShows.innerHTML = "";
+
       try {
         // let response = await axios.get(`http://localhost:3001/brands/${input}`);
         let response = await axios.get(`http://localhost:3001/events`);
@@ -71,13 +78,61 @@ async function refresh() {
             newLocation.classList.add('show-location')
             newLocation.innerText = eventObject.location
             newCard.appendChild(newLocation)
+
+            const newTime = document.createElement('div');
+            newTime.classList.add('show-location')
+            newTime.innerText = eventObject.time
+            newCard.appendChild(newTime)
+
+            const newWeekday = document.createElement('div');
+            newWeekday.classList.add('show-location')
+            newWeekday.innerText = eventObject.weekday
+            newCard.appendChild(newWeekday)
+
+            const newFrequency = document.createElement('div');
+            newFrequency.classList.add('show-frequency')
+            newFrequency.innerText = eventObject.frequency
+            newCard.appendChild(newFrequency)
+
+            const newDetails = document.createElement('div');
+            newDetails.classList.add('show-details')
+            newDetails.innerText = eventObject.details
+            newCard.appendChild(newDetails)
+
+            const newLink = document.createElement('div');
+            newLink.classList.add('show-link')
+            newLink.innerText = eventObject.link
+            newCard.appendChild(newLink)
     
             // const newBicycleLink = document.createElement('a');
             // newBicycleLink.href = 'parkerBicycle.html';
             // newBicycleLink.target = '_blank'; 
             // newBicycleLink.appendChild(newCard);
             
-            sundayShows.appendChild(newCard); //should be day container
+            switch (eventObject.weekday) {
+                case "Sunday":
+                    sundayShows.appendChild(newCard)
+                    break;
+                case "Monday":
+                    mondayShows.appendChild(newCard)
+                    break;
+                case "Tuesday":
+                    tuesdayShows.appendChild(newCard)
+                    break;
+                case "Wednesday":
+                    wednesdayShows.appendChild(newCard)
+                    break;
+                case "Thursday":
+                    thursdayShows.appendChild(newCard)
+                    break
+                case "Friday":
+                    fridayShows.appendChild(newCard)
+                    break                    
+                case "Saturday":
+                    saturdayShows.appendChild(newCard)
+                    break                                           
+
+            }
     
             // brandNameArray.push(eventObject.name)
             // brandLowerNameArray.push(eventObject.name.toLowerCase())
