@@ -23,31 +23,31 @@ const VenueController = require('./controllers/VenueController')
 app.get('/', (req, res) => res.send('This is our landing page!'))
 
 //READ GET 
-app.get('/event', EventController.getAllEvents)
-app.get('/comic', ComicController.getAllComics)
-app.get('/venue', VenueController.getAllVenues)
+app.get('/events', EventController.getAllEvents)
+app.get('/comics', ComicController.getAllComics)
+app.get('/venues', VenueController.getAllVenues)
 
-app.get('/event/:id', EventController.getEventById)
-app.get('/comic/:id', ComicController.getComicById)
-app.get('/venue/:id', VenueController.getVenueById)
+app.get('/events/:id', EventController.getEventById)
+app.get('/comics/:id', ComicController.getComicById)
+app.get('/venues/:id', VenueController.getVenueById)
 
 // app.get('/dogsName/:id', dogController.getDogName)
 // app.get('/dogsColor/:color', dogController.getDogColor)
 
 //CREATE POST
-app.post('/event', EventController.createEvent)
-app.post('/comic', ComicController.createComic)
-app.post('/venue', VenueController.createVenue)
+app.post('/events', EventController.createEvent)
+app.post('/comics', ComicController.createComic)
+app.post('/venues', VenueController.createVenue)
 
 //UPDATE PUT
-app.put('/event/:id', EventController.updateEvent)
-app.put('/comic/:id', ComicController.updateComic)
-app.put('/venue/:id', VenueController.updateVenue)
+app.put('/events/:id', EventController.updateEvent)
+app.put('/comics/:id', ComicController.updateComic)
+app.put('/venues/:id', VenueController.updateVenue)
 
 //DELETE
-app.delete('/event/:id', EventController.deleteEvent)
-app.delete('/comic/:id', ComicController.deleteComic)
-app.delete('/venue/:id', VenueController.deleteVenue)
+app.delete('/events/:id', EventController.deleteEvent)
+app.delete('/comics/:id', ComicController.deleteComic)
+app.delete('/venues/:id', VenueController.deleteVenue)
 
 
 //DEFAULT
