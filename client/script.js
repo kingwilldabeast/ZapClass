@@ -4,21 +4,17 @@
 /*---------------------------- Variables (state) ----------------------------*/
 
 
-let brandNameArray = []
-let brandLowerNameArray = []
-let brandIDArray = []
+// let brandNameArray = []
+// let brandLowerNameArray = []
+// let brandIDArray = []
 
-let eventObjectArray = []
-let comicObjectArray = []
-let venueObjectArray = []
 
 /*------------------------ Cached Element References ------------------------*/
 
 // const buttonElement = document.querySelector('#myButtonID')
 
 // let button = document.querySelector("#searchButton")
-let container = document.querySelector("#container")
-let cards = document.querySelectorAll(".card")
+// let container = document.querySelector("#container")
 
 let sundayShows = document.querySelector("#Sunday");
 let mondayShows = document.querySelector("#Monday");
@@ -28,6 +24,7 @@ let thursdayShows = document.querySelector("#Thursday");
 let fridayShows = document.querySelector("#Friday");
 let saturdayShows = document.querySelector("#Saturday");
 
+let hosts = document.querySelectorAll(".show-host")
 let dayTitles = document.querySelectorAll(".day-title")
 let showContainers = document.querySelectorAll(".shows-container")
 
@@ -116,9 +113,11 @@ async function refresh() {
                 const newHost = document.createElement('div');
                 newHost.classList.add('show-host')
                 const comicObject = comicObjectArray.find(obj => obj._id.toString() === hostObjectID);
-                newHost.innerText = `Hosts: ${comicObject.name}`
-                // const index = comicObjectArray.findIndex(obj => obj._id.toString() === hostObjectID);
-                // newHost.innerText = comicObjectArray[index].name
+                newHost.innerText = `Host: ${comicObject.name}`
+                newHost.addEventListener('click', function(event) {
+                // console.log(hostObjectID)
+                linkToComic(hostObjectID)
+                })
                 newCard.appendChild(newHost)
             }
     
@@ -127,11 +126,6 @@ async function refresh() {
             const venueObject = venueObjectArray.find(obj => obj._id.toString() === eventObject.venue);
             newVenue.innerText = `Venue: ${venueObject.name}`
             newCard.appendChild(newVenue)
-
-            // const newBicycleLink = document.createElement('a');
-            // newBicycleLink.href = 'parkerBicycle.html';
-            // newBicycleLink.target = '_blank'; 
-            // newBicycleLink.appendChild(newCard);
             
             switch (eventObject.weekday) {
                 case "Sunday":
@@ -158,15 +152,9 @@ async function refresh() {
 
             }
     
-            // brandNameArray.push(eventObject.name)
-            // brandLowerNameArray.push(eventObject.name.toLowerCase())
-            // brandIDArray.push(eventObject._id)
         }
         
-        // console.log(brandLowerNameArray)
-        // console.log(brandIDArray)
-        // cards = document.querySelectorAll(".card")
-        // // console.log(cards)
+
         
         
         // cards.forEach(function(card) {
@@ -201,6 +189,15 @@ async function refresh() {
     }
 
 
+function linkToComic(hostID) {
+    // nameCopy = brandNameArray[brandIDArray.indexOf(idCopy)]
+    localStorage.setItem('storedHostID', hostID);
+    // localStorage.setItem('brandName', nameCopy);
+    console.log(hostID)
+    // console.log(nameCopy)
+    window.open('indexComic.html', '_blank');
+}
+
 function hideInfo(day) {
     //when click day header
     //either hide or show shows-container
@@ -233,3 +230,4 @@ dayTitles.forEach((day) => {
         hideInfo(day)
     })
 })
+

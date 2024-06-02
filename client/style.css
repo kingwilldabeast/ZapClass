@@ -114,6 +114,10 @@ main {
     border-radius: 10px;
 }
 
+.show-host {
+    border: 1px solid pink;
+}
+
 /* .show-name {
     border: 1px solid blue;
     margin-top: 30px;

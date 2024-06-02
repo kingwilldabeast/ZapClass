@@ -40,6 +40,12 @@ const main = async () => {
             headshot: "headshot.png",
             clip: "https:youtube.com",
             eventsHosted: [eventArray[0]._id]
+        },
+        {
+            name: "Billy Bob",
+            headshot: "headshot.png",
+            clip: "https:youtube.com",
+            eventsHosted: [eventArray[0]._id]
         }
     ]
     const comicArray = await Comic.insertMany(comicObjects)
