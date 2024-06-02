@@ -27,7 +27,7 @@ let saturdayShows = document.querySelector("#Saturday");
 let hosts = document.querySelectorAll(".show-host")
 let dayTitles = document.querySelectorAll(".day-title")
 let showContainers = document.querySelectorAll(".shows-container")
-
+let body = document.querySelector('body')
 /*-------------------------------- Functions --------------------------------*/
 
 async function refresh() {
@@ -130,6 +130,10 @@ async function refresh() {
                 linkToVenue(eventObject.venue)
                 })
             newCard.appendChild(newVenue)
+
+            newCard.addEventListener('click', (event) => {
+                expand(eventObject)
+            })
             
             switch (eventObject.weekday) {
                 case "Sunday":
@@ -222,6 +226,21 @@ function hideInfo(day) {
     } else {
         content.style.display = "none"
     }
+}
+
+function expand(eventObject) {
+    const newSection = document.createElement('div');
+    newSection.classList.add('expanded-card')
+    newSection.innerText = `Venue: ${eventObject.name}`
+    body.appendChild(newSection)
+
+    const newButton = document.createElement('div');
+    newButton.innerText = 'Close'
+    newButton.addEventListener('click', (event) => {
+        body.removeChild(newSection)
+    })
+    
+    newSection.appendChild(newButton)
 }
 
 /*----------------------------- Event Listeners -----------------------------*/
