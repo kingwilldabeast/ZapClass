@@ -4,14 +4,14 @@
 
 /*------------------------ Cached Element References ------------------------*/
 
-const hostID = localStorage.getItem('storedHostID')
-const comicName = document.querySelector('#comic-name')
-const comicHeadshot = document.querySelector('#comic-headshot')
-const comicClip = document.querySelector('#comic-clip')
+const venueID = localStorage.getItem('storedVenueID')
+const venueName = document.querySelector('#venue-name')
+const venueAddress = document.querySelector('#venue-address')
+const venueCapacity = document.querySelector('#venue-capacity')
 const showsHostedElem = document.querySelector('.shows-container')
 /*-------------------------------- Functions --------------------------------*/
 
-// Obtain ID from whichever comic was clicked on previous page
+// Obtain ID from whichever venue was clicked on previous page
 // const nameCopy = localStorage.getItem('comicName')
 async function refresh() {
 
@@ -25,15 +25,15 @@ async function refresh() {
         comicObjectArray = comicResponse.data //assuming it's an array
         venueObjectArray = venueResponse.data //assuming it's an array
         
-        let comicSingleResponse = await axios.get(`http://localhost:3001/comics/${hostID}`);
-        comicObject = comicSingleResponse.data //assuming it's an array
-        console.log(comicObject)
+        let venueSingleResponse = await axios.get(`http://localhost:3001/venues/${venueID}`);
+        venueObject = venueSingleResponse.data //assuming it's an array
+        console.log(venueObject)
 
         
-        comicName.innerText = comicObject.name
-        comicHeadshot.innerText = comicObject.headshot
-        comicClip.innerText = comicObject.clip
-        showsHostedArray = comicObject.eventsHosted
+        venueName.innerText = venueObject.name
+        venueAddress.innerText = venueObject.address
+        venueCapacity.innerText = venueObject.capacity
+        showsHostedArray = venueObject.eventsHeld
         console.log(`the shows hosted are ${showsHostedArray}`)
 
         for (const eventObject of eventObjectArray) {

@@ -125,6 +125,10 @@ async function refresh() {
             newVenue.classList.add('show-link')
             const venueObject = venueObjectArray.find(obj => obj._id.toString() === eventObject.venue);
             newVenue.innerText = `Venue: ${venueObject.name}`
+            newVenue.addEventListener('click', function(event) {
+                // console.log(hostObjectID)
+                linkToVenue(eventObject.venue)
+                })
             newCard.appendChild(newVenue)
             
             switch (eventObject.weekday) {
@@ -196,6 +200,15 @@ function linkToComic(hostID) {
     console.log(hostID)
     // console.log(nameCopy)
     window.open('indexComic.html', '_blank');
+}
+
+function linkToVenue(venueID) {
+    // nameCopy = brandNameArray[brandIDArray.indexOf(idCopy)]
+    localStorage.setItem('storedVenueID', venueID);
+    // localStorage.setItem('brandName', nameCopy);
+    console.log(venueID)
+    // console.log(nameCopy)
+    window.open('indexVenue.html', '_blank');
 }
 
 function hideInfo(day) {
