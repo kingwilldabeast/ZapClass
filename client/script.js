@@ -226,10 +226,104 @@ function expand(eventObject) {
         deleteEvent(eventObject)
     })
 
+    const newUpdateButton = document.createElement('div');
+    newUpdateButton.innerText = 'Change Details'
+    newUpdateButton.addEventListener('click', (event) => {
+        displayUpdateForm(newSection,eventObject)
+    })
+
     newSection.appendChild(newButton)
+    newSection.appendChild(newUpdateButton)
     newSection.appendChild(newDeleteButton)
 
 }
+
+function displayUpdateForm(section, eventObject) {
+    //add html form to the section
+    const newForm = document.createElement('form');
+    newForm.setAttribute('id', 'newEventForm');
+    function createLabelInputPair(labelText, inputForIdName, isRequired, initValue) {
+        // Create the label element
+        const label = document.createElement('label');
+        label.setAttribute('for', inputForIdName);
+        label.innerText = `${labelText}:`;
+      
+        // Create the input element
+        const input = document.createElement('input');
+        input.setAttribute('type', 'text');
+        input.setAttribute('id', inputForIdName);
+        input.setAttribute('name', inputForIdName);
+        if (isRequired) {
+          input.setAttribute('required', '');
+        }
+        input.value = initValue
+      
+        // Append the label and input to the form
+        newForm.appendChild(label);
+        newForm.appendChild(input);
+        newForm.appendChild(document.createElement('br'));
+      }
+
+      createLabelInputPair('Name', 'nameUpdate', true, eventObject.name);
+      createLabelInputPair('Type', 'typeUpdate', true, eventObject.type);
+      createLabelInputPair('Logo', 'logoUpdate', false, eventObject.logo);
+      createLabelInputPair('Location', 'locationUpdate', true, eventObject.location);
+      createLabelInputPair('Time', 'timeUpdate', true, eventObject.time);
+      createLabelInputPair('Weekday', 'weekdayUpdate', true, eventObject.weekday);
+      createLabelInputPair('Frequency', 'frequencyUpdate', true, eventObject.frequency);
+      createLabelInputPair('Details', 'detailsUpdate', false, eventObject.details);
+      createLabelInputPair('Link', 'linkUpdate', false, eventObject.link);
+
+    const submitButton = document.createElement('button');
+    submitButton.setAttribute('type', 'submit');
+    submitButton.innerText = 'Update Event';
+    submitButton.addEventListener('click', () => {
+        updateEvent(eventObject)
+    })
+    newForm.appendChild(submitButton);
+
+    section.appendChild(newForm)
+
+}
+
+async function updateEvent(eventObject) {
+    event.preventDefault(); // Prevent the default form submission
+
+    const name = document.getElementById('nameUpdate').value;
+    const type = document.getElementById('typeUpdate').value;
+    const logo = document.getElementById('logoUpdate').value;
+    const location = document.getElementById('locationUpdate').value;
+    const time = document.getElementById('timeUpdate').value;
+    const weekday = document.getElementById('weekdayUpdate').value;
+    const frequency = document.getElementById('frequencyUpdate').value;
+    const details = document.getElementById('detailsUpdate').value;
+    const link = document.getElementById('linkUpdate').value;
+    try {
+        const response = await fetch(`http://localhost:3001/events/${eventObject._id}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({name, type, logo, location, time, weekday, frequency, details, link }),
+        });
+        refresh()
+    
+        if (response.ok) {
+            const contentType = response.headers.get('content-type');
+            if (contentType && contentType.includes('application/json')) {
+              const result = await response.json();
+              console.log('Element updated:', result);
+            } else {
+              const result = await response.text();
+              console.log('Element updated:', result);
+            }
+          } else {
+            console.error('Failed to update element:', response.statusText);
+          }
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      }
 
 async function deleteEvent(eventObject) {
     try {
