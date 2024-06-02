@@ -63,11 +63,13 @@ async function refresh() {
             newCard.classList.add('show-card');
             newCard.setAttribute('id',eventObject._id)
     
-            const newImage = document.createElement('img');
-            newImage.classList.add('show-logo')
-            // console.log(eventObject.logo)
-            // newImage.setAttribute('src',eventObject.logo)
-            newCard.appendChild(newImage)
+            if (eventObject.logo) {
+                const newImage = document.createElement('img');
+                newImage.classList.add('show-logo')
+                // console.log(eventObject.logo)
+                // newImage.setAttribute('src',eventObject.logo)
+                newCard.appendChild(newImage)
+            }
     
             const newName = document.createElement('div');
             newName.classList.add('show-name')
@@ -99,37 +101,45 @@ async function refresh() {
             newFrequency.innerText = eventObject.frequency
             newCard.appendChild(newFrequency)
 
-            const newDetails = document.createElement('div');
-            newDetails.classList.add('show-details')
-            newDetails.innerText = eventObject.details
-            newCard.appendChild(newDetails)
+            if (eventObject.details) {
+                const newDetails = document.createElement('div');
+                newDetails.classList.add('show-details')
+                newDetails.innerText = eventObject.details
+                newCard.appendChild(newDetails)
+            }
 
-            const newLink = document.createElement('div');
-            newLink.classList.add('show-link')
-            newLink.innerText = eventObject.link
-            newCard.appendChild(newLink)
+            if (eventObject.link) {
+                const newLink = document.createElement('div');
+                newLink.classList.add('show-link')
+                newLink.innerText = eventObject.link
+                newCard.appendChild(newLink)
+            }
 
-            for (const hostObjectID of eventObject.hosts) {
-                const newHost = document.createElement('div');
-                newHost.classList.add('show-host')
-                const comicObject = comicObjectArray.find(obj => obj._id.toString() === hostObjectID);
-                newHost.innerText = `Host: ${comicObject.name}`
-                newHost.addEventListener('click', function(event) {
-                // console.log(hostObjectID)
-                linkToComic(hostObjectID)
-                })
-                newCard.appendChild(newHost)
+            if (eventObject.hosts) {
+                for (const hostObjectID of eventObject.hosts) {
+                    const newHost = document.createElement('div');
+                    newHost.classList.add('show-host')
+                    const comicObject = comicObjectArray.find(obj => obj._id.toString() === hostObjectID);
+                    newHost.innerText = `Host: ${comicObject.name}`
+                    newHost.addEventListener('click', function(event) {
+                    // console.log(hostObjectID)
+                    linkToComic(hostObjectID)
+                    })
+                    newCard.appendChild(newHost)
+                }
             }
     
-            const newVenue = document.createElement('div');
-            newVenue.classList.add('show-link')
-            const venueObject = venueObjectArray.find(obj => obj._id.toString() === eventObject.venue);
-            newVenue.innerText = `Venue: ${venueObject.name}`
-            newVenue.addEventListener('click', function(event) {
-                // console.log(hostObjectID)
-                linkToVenue(eventObject.venue)
-                })
-            newCard.appendChild(newVenue)
+            if (eventObject.venue) {
+                const newVenue = document.createElement('div');
+                newVenue.classList.add('show-link')
+                const venueObject = venueObjectArray.find(obj => obj._id.toString() === eventObject.venue);
+                newVenue.innerText = `Venue: ${venueObject.name}`
+                newVenue.addEventListener('click', function(event) {
+                    // console.log(hostObjectID)
+                    linkToVenue(eventObject.venue)
+                    })
+                newCard.appendChild(newVenue)
+            }
 
             newCard.addEventListener('click', (event) => {
                 expand(eventObject)
@@ -157,40 +167,9 @@ async function refresh() {
                 case "Saturday":
                     saturdayShows.appendChild(newCard)
                     break                                           
-
             }
-    
         }
-        
 
-        
-        
-        // cards.forEach(function(card) {
-        //   card.addEventListener('click', function() {    
-        //     // idCopy = card.querySelector('.brand-name').innerText
-        //     idCopy = card.getAttribute('id')
-        //     nameCopy = brandNameArray[brandIDArray.indexOf(idCopy)]
-        //     localStorage.setItem('brandID', idCopy);
-        //     localStorage.setItem('brandName', nameCopy);
-        //     console.log(idCopy)
-        //     console.log(nameCopy)
-        //     window.open('indexBicycle.html', '_blank');
-        //   });
-        // });
-        
-        // let input = document.querySelector("#inputBar").value.toLowerCase()
-        // if (input == ``) { return }
-        // if (!brandLowerNameArray.includes(input)) {return}
-        // cards = document.querySelectorAll(".card")
-        // cards.forEach(card => {
-        //     if (card.querySelector('.brand-name').innerText.toLowerCase()
-        //         !== input) {
-        //         // console.log(brandNameArray)
-        //         container.removeChild(card)
-        //     }
-        // })
-        // console.log(eventObjectArray)
-    
     } catch (error) {
         console.error('Error fetching data:', error);  
     }
@@ -239,9 +218,45 @@ function expand(eventObject) {
     newButton.addEventListener('click', (event) => {
         body.removeChild(newSection)
     })
-    
+
+    const newDeleteButton = document.createElement('div');
+    newDeleteButton.innerText = 'Delete Event'
+    newDeleteButton.addEventListener('click', (event) => {
+        body.removeChild(newSection)
+        deleteEvent(eventObject)
+    })
+
     newSection.appendChild(newButton)
+    newSection.appendChild(newDeleteButton)
+
 }
+
+async function deleteEvent(eventObject) {
+    try {
+        const response = await fetch(`http://localhost:3001/events/${eventObject._id}`, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+        refresh()
+    
+        if (response.ok) {
+            const contentType = response.headers.get('content-type');
+            if (contentType && contentType.includes('application/json')) {
+              const result = await response.json();
+              console.log('Element deleted:', result);
+            } else {
+              const result = await response.text();
+              console.log('Element deleted:', result);
+            }
+          } else {
+            console.error('Failed to delete element:', response.statusText);
+          }
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      }
 
 /*----------------------------- Event Listeners -----------------------------*/
 
@@ -262,4 +277,39 @@ dayTitles.forEach((day) => {
         hideInfo(day)
     })
 })
+
+document.getElementById('newEventForm').addEventListener('submit', async function(event) {
+  event.preventDefault(); // Prevent the default form submission
+
+  const name = document.getElementById('name').value;
+  const type = document.getElementById('type').value;
+  const logo = document.getElementById('logo').value;
+  const location = document.getElementById('location').value;
+  const time = document.getElementById('time').value;
+  const weekday = document.getElementById('weekday').value;
+  const frequency = document.getElementById('frequency').value;
+  const details = document.getElementById('details').value;
+  const link = document.getElementById('link').value;
+
+  try {
+    const response = await fetch('http://localhost:3001/events', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({name, type, logo, location, time, weekday, frequency, details, link }),
+    });
+
+    refresh()
+
+    if (response.ok) {
+      const result = await response.json();
+      console.log('Element added:', result);
+    } else {
+      console.error('Failed to add element:', response.statusText);
+    }
+  } catch (error) {
+    console.error('Error:', error);
+  }
+});
 

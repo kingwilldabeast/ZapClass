@@ -4,11 +4,11 @@ const eventSchema = new Schema(
     {
         name: {type: String, required: true},
         type: {type: String, required: true}, //show or mic
-        logo: {type: String, required: true},
+        logo: {type: String},
         location: {type: String, required: true},
-        time: {type: String},
-        weekday: {type: String},
-        frequency: {type: String},
+        time: {type: String, required: true},
+        weekday: {type: String, required: true},
+        frequency: {type: String, required: true},
         details: {type: String},
         link: {type: String},
         hosts: [{type: Schema.Types.ObjectId, ref: 'comic_id'}],
