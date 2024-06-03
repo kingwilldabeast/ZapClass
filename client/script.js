@@ -28,7 +28,8 @@ let hosts = document.querySelectorAll(".show-host")
 let dayTitles = document.querySelectorAll(".day-title")
 let showContainers = document.querySelectorAll(".shows-container")
 let body = document.querySelector('body')
-
+let newEventForm = document.querySelector('#new-event-form')
+let formButton = document.querySelector('#display-form')
 
 /*-------------------------------- Functions --------------------------------*/
 
@@ -196,6 +197,15 @@ function linkToVenue(venueID) {
     window.open('indexVenue.html', '_blank');
 }
 
+function displayCreateForm() {
+    console.log(newEventForm.style.display)
+    if (newEventForm.style.display == "block") {
+        newEventForm.style.display = "none"
+    } else {
+        newEventForm.style.display = "block"
+    }
+
+}
 function hideInfo(day) {
     //when click day header
     //either hide or show shows-container
@@ -327,8 +337,8 @@ async function updateEvent(eventObject) {
         }
       }
 
-async function createEvent() {
-}
+// async function createEvent() {
+// }
 
 async function deleteEvent(eventObject) {
     try {
@@ -366,9 +376,9 @@ document.addEventListener('DOMContentLoaded', async ()=> {
     refresh()
 })
 
-// button.addEventListener('click', () => {
-//     refresh()
-// })
+formButton.addEventListener('click',  (event) => {
+    displayCreateForm()
+})
 
 dayTitles.forEach((day) => {
     day.addEventListener('click', function(event) {
@@ -377,7 +387,7 @@ dayTitles.forEach((day) => {
     })
 })
 
-document.getElementById('newEventForm').addEventListener('submit', async function(event) {
+document.getElementById('new-event-form').addEventListener('submit', async function(event) {
   event.preventDefault(); // Prevent the default form submission
 
 //   createEvent()
