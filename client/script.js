@@ -28,6 +28,8 @@ let hosts = document.querySelectorAll(".show-host")
 let dayTitles = document.querySelectorAll(".day-title")
 let showContainers = document.querySelectorAll(".shows-container")
 let body = document.querySelector('body')
+
+
 /*-------------------------------- Functions --------------------------------*/
 
 async function refresh() {
@@ -42,7 +44,7 @@ async function refresh() {
     wednesdayShows.innerHTML = "";
     thursdayShows.innerHTML = "";
     fridayShows.innerHTML = "";
-    saturdayShows.innerHTML = "";
+    saturdayShows.innerHTML = "";  
 
       try {
         let eventResponse = await axios.get(`http://localhost:3001/events`);
@@ -325,6 +327,9 @@ async function updateEvent(eventObject) {
         }
       }
 
+async function createEvent() {
+}
+
 async function deleteEvent(eventObject) {
     try {
         const response = await fetch(`http://localhost:3001/events/${eventObject._id}`, {
@@ -375,35 +380,40 @@ dayTitles.forEach((day) => {
 document.getElementById('newEventForm').addEventListener('submit', async function(event) {
   event.preventDefault(); // Prevent the default form submission
 
-  const name = document.getElementById('name').value;
-  const type = document.getElementById('type').value;
-  const logo = document.getElementById('logo').value;
-  const location = document.getElementById('location').value;
-  const time = document.getElementById('time').value;
-  const weekday = document.getElementById('weekday').value;
-  const frequency = document.getElementById('frequency').value;
-  const details = document.getElementById('details').value;
-  const link = document.getElementById('link').value;
+//   createEvent()
+const form = document.getElementById('newEventForm')
+const name = document.getElementById('name').value;
+const type = document.getElementById('type').value;
+const logo = document.getElementById('logo').value;
+const location = document.getElementById('location').value;
+const time = document.getElementById('time').value;
+const weekday = document.getElementById('weekday').value;
+const frequency = document.getElementById('frequency').value;
+const details = document.getElementById('details').value;
+const link = document.getElementById('link').value;
 
-  try {
-    const response = await fetch('http://localhost:3001/events', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({name, type, logo, location, time, weekday, frequency, details, link }),
-    });
+try {
+  const response = await fetch('http://localhost:3001/events', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({name, type, logo, location, time, weekday, frequency, details, link }),
+  });
 
-    refresh()
+  refresh()
+  form.reset()
 
-    if (response.ok) {
-      const result = await response.json();
-      console.log('Element added:', result);
-    } else {
-      console.error('Failed to add element:', response.statusText);
-    }
-  } catch (error) {
-    console.error('Error:', error);
+  if (response.ok) {
+    const result = await response.json();
+    console.log('Element added:', result);
+  } else {
+    console.error('Failed to add element:', response.statusText);
   }
+} catch (error) {
+  console.error('Error:', error);
+}
+
+  
 });
 
