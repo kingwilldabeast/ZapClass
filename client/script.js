@@ -28,8 +28,11 @@ let hosts = document.querySelectorAll(".show-host")
 let dayTitles = document.querySelectorAll(".day-title")
 let showContainers = document.querySelectorAll(".shows-container")
 let body = document.querySelector('body')
+
 let newEventForm = document.querySelector('#new-event-form')
 let formButton = document.querySelector('#display-form')
+let hostOptions = document.querySelector('#host-options')
+let venueOptions = document.querySelector('#venue-options')
 
 /*-------------------------------- Functions --------------------------------*/
 
@@ -46,6 +49,8 @@ async function refresh() {
     thursdayShows.innerHTML = "";
     fridayShows.innerHTML = "";
     saturdayShows.innerHTML = "";  
+    hostOptions.innerHTML = ''
+    venueOptions.innerHTML = ''
 
       try {
         let eventResponse = await axios.get(`http://localhost:3001/events`);
@@ -59,6 +64,21 @@ async function refresh() {
         console.log(eventObjectArray)
         console.log(comicObjectArray)
         console.log(venueObjectArray)
+
+
+        for (const comicObject of comicObjectArray) {
+            const newHost = document.createElement('option');
+            newHost.setAttribute('id',comicObject._id)
+            newHost.value = comicObject.name
+            hostOptions.appendChild(newHost)
+        }
+
+        for (const venueObject of venueObjectArray) {
+            const newVenue = document.createElement('option');
+            newVenue.setAttribute('id',venueObject._id)
+            newVenue.value = venueObject.name
+            venueOptions.appendChild(newVenue)
+        }
             
         for (const eventObject of eventObjectArray) {
     
@@ -412,7 +432,7 @@ try {
   });
 
   refresh()
-  form.reset()
+  newEventForm.reset()
 
   if (response.ok) {
     const result = await response.json();
