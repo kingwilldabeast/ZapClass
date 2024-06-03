@@ -411,7 +411,6 @@ document.getElementById('new-event-form').addEventListener('submit', async funct
   event.preventDefault(); // Prevent the default form submission
 
 //   createEvent()
-const form = document.getElementById('newEventForm')
 const name = document.getElementById('name').value;
 const type = document.getElementById('type').value;
 const logo = document.getElementById('logo').value;
@@ -421,6 +420,9 @@ const weekday = document.getElementById('weekday').value;
 const frequency = document.getElementById('frequency').value;
 const details = document.getElementById('details').value;
 const link = document.getElementById('link').value;
+const venueName = document.getElementById('venue').value;
+const venueObject = venueObjectArray.find(obj => obj.name === venueName);
+const venue = venueObject._id
 
 try {
   const response = await fetch('http://localhost:3001/events', {
@@ -428,7 +430,7 @@ try {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({name, type, logo, location, time, weekday, frequency, details, link }),
+    body: JSON.stringify({name, type, logo, location, time, weekday, frequency, details, link, venue }),
   });
 
   refresh()
