@@ -532,7 +532,19 @@ try {
     });
 
     if (!comicUpdateResponse.ok) {
-        throw new Error('Failed to update car with new driver');
+        throw new Error('Failed to update comic with new event');
+    }
+
+    const venueUpdateResponse = await fetch(`http://localhost:3001/venues/${venue}/addEvent`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ eventsHeld: newEvent.newObject._id }),
+    });
+
+    if (!venueUpdateResponse.ok) {
+        throw new Error('Failed to update venue with new event');
     }
 
         refresh()

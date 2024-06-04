@@ -61,6 +61,18 @@ const updateVenue = async (req, res) => {
     }
 }
 
+const addEventToVenue = async (req, res) => {
+    try {
+        const venue = await Venue.findByIdAndUpdate(
+            req.params.id,
+            { $push: { eventsHeld: req.body.eventsHeld } },
+            { new: true }
+        );
+        res.status(200).json(venue);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+}
 //delete
 const deleteVenue = async (req, res) => {
     try {
@@ -83,5 +95,6 @@ module.exports = {
     getVenueById, 
     createVenue, 
     updateVenue, 
+    addEventToVenue,
     deleteVenue,
 }
