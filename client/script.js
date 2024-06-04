@@ -392,8 +392,82 @@ async function updateEvent(eventObject) {
         }
       }
 
-// async function createEvent() {
-// }
+async function createEvent() {
+    const name = document.getElementById('name').value;
+    const type = document.getElementById('type').value;
+    const logo = document.getElementById('logo').value;
+    const location = document.getElementById('location').value;
+    const time = document.getElementById('time').value;
+    const weekday = document.getElementById('weekday').value;
+    const frequency = document.getElementById('frequency').value;
+    const details = document.getElementById('details').value;
+    const link = document.getElementById('link').value;
+
+    const venueName = document.getElementById('venue').value;
+    const venueObject = venueObjectArray.find(obj => obj.name === venueName);
+    const venue = venueObject._id
+    console.log(`Venue is ${venue}`)
+
+    const hostName = document.getElementById('hosts').value;
+    const hostObject = comicObjectArray.find(obj => obj.name === hostName);
+    const host = hostObject._id
+    console.log(`host is ${host}`)
+
+    try {
+        const response = await fetch('http://localhost:3001/events', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            // body: JSON.stringify({name, type, logo, location, time, weekday, frequency, details, link, venue }),
+            body: JSON.stringify({name, type, logo, location, time, weekday, frequency, details, link, hosts: [host], venue }),
+        });
+        
+        if (response.ok) {
+            // const newEvent = await response.json();
+            console.log('Element added');
+        } else {
+            console.error('Failed to add element:', response.statusText);
+        }
+
+        const newEvent = await response.json();
+        // console.log(newEvent)
+        // console.log(newEvent.newObject._id)
+
+        // Update the comic with the new event's ID
+        const comicUpdateResponse = await fetch(`http://localhost:3001/comics/${host}/addEvent`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ eventsHosted: newEvent.newObject._id }),
+        });
+
+        if (!comicUpdateResponse.ok) {
+            throw new Error('Failed to update comic with new event');
+        }
+
+        // Update the venue with the new event's ID
+        const venueUpdateResponse = await fetch(`http://localhost:3001/venues/${venue}/addEvent`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ eventsHeld: newEvent.newObject._id }),
+        });
+
+        if (!venueUpdateResponse.ok) {
+            throw new Error('Failed to update venue with new event');
+        }
+
+        refresh()
+        newEventForm.reset()
+
+    } catch (error) {
+    console.error('Error:', error);
+    }
+
+}
 
 async function deleteEvent(eventObject) {
     try {
@@ -406,6 +480,7 @@ async function deleteEvent(eventObject) {
         refresh()
     
         if (response.ok) {
+            //call remove event from venue function?
             const contentType = response.headers.get('content-type');
             if (contentType && contentType.includes('application/json')) {
               const result = await response.json();
@@ -417,49 +492,16 @@ async function deleteEvent(eventObject) {
           } else {
             console.error('Failed to delete element:', response.statusText);
           }
+
+
         } catch (error) {
           console.error('Error:', error);
         }
       }
 
-      async function addEventToVenue(eventObject,venueObject) {
-        // event.preventDefault(); // Prevent the default form submission
-    
-        let venueArray = venueObject.eventsHeld
-        venueArray.push(eventObject._id)
-        let eventsHeld = venueArray
-        
-        try {
-            const response = await fetch(`http://localhost:3001/venues/${venueObject._id}`, {
-              method: 'PUT',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({name, address, capacity, eventsHeld }),
-            });
-            refresh()
-        
-            if (response.ok) {
-                const contentType = response.headers.get('content-type');
-                if (contentType && contentType.includes('application/json')) {
-                  const result = await response.json();
-                  console.log('Element updated:', result);
-                } else {
-                  const result = await response.text();
-                  console.log('Element updated:', result);
-                }
-              } else {
-                console.error('Failed to update element:', response.statusText);
-              }
-            } catch (error) {
-              console.error('Error:', error);
-            }
-          }
 
 /*----------------------------- Event Listeners -----------------------------*/
 
-// buttonElement.addEventListener('click', myFunction)
-// document.addEventListener('DOMContentLoaded', myFunction)
 
 document.addEventListener('DOMContentLoaded', async ()=> {
     refresh()
@@ -477,85 +519,10 @@ dayTitles.forEach((day) => {
     })
 })
 
-document.getElementById('new-event-form').addEventListener('submit', async function(event) {
+document.getElementById('new-event-form').addEventListener('submit', function(event) {
   event.preventDefault(); // Prevent the default form submission
 
-//   createEvent()
-const name = document.getElementById('name').value;
-const type = document.getElementById('type').value;
-const logo = document.getElementById('logo').value;
-const location = document.getElementById('location').value;
-const time = document.getElementById('time').value;
-const weekday = document.getElementById('weekday').value;
-const frequency = document.getElementById('frequency').value;
-const details = document.getElementById('details').value;
-const link = document.getElementById('link').value;
+  createEvent()
 
-const venueName = document.getElementById('venue').value;
-const venueObject = venueObjectArray.find(obj => obj.name === venueName);
-const venue = venueObject._id
-console.log(`Venue is ${venue}`)
-
-const hostName = document.getElementById('hosts').value;
-const hostObject = comicObjectArray.find(obj => obj.name === hostName);
-const host = hostObject._id
-console.log(`host is ${host}`)
-
-try {
-    const response = await fetch('http://localhost:3001/events', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        // body: JSON.stringify({name, type, logo, location, time, weekday, frequency, details, link, venue }),
-        body: JSON.stringify({name, type, logo, location, time, weekday, frequency, details, link, hosts: [host], venue }),
-    });
-    
-    if (response.ok) {
-        // const newEvent = await response.json();
-        console.log('Element added');
-    } else {
-        console.error('Failed to add element:', response.statusText);
-    }
-
-    const newEvent = await response.json();
-    console.log(newEvent)
-    console.log(newEvent.newObject._id)
-
-    // Update the comic with the new event's ID
-    const comicUpdateResponse = await fetch(`http://localhost:3001/comics/${host}/addEvent`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ eventsHosted: newEvent.newObject._id }),
-    });
-
-    if (!comicUpdateResponse.ok) {
-        throw new Error('Failed to update comic with new event');
-    }
-
-    const venueUpdateResponse = await fetch(`http://localhost:3001/venues/${venue}/addEvent`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ eventsHeld: newEvent.newObject._id }),
-    });
-
-    if (!venueUpdateResponse.ok) {
-        throw new Error('Failed to update venue with new event');
-    }
-
-        refresh()
-        newEventForm.reset()
-
-
-} catch (error) {
-  console.error('Error:', error);
-}
-
-
-  
 });
 

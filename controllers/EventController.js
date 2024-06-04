@@ -73,6 +73,8 @@ const deleteEvent = async (req, res) => {
         if (erasedObject) {
             return res.status(200).send("Event deleted");
         }
+
+        
         throw new Error("Event not found and can't be deleted");
     } catch (error) {
         if (error.name === 'CastError' && error.kind === 'ObjectId') {

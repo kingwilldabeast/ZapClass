@@ -49,6 +49,8 @@ app.put('/venues/:id', VenueController.updateVenue)
 app.put('/comics/:id/addEvent', ComicController.addEventToComic)
 app.put('/venues/:id/addEvent', VenueController.addEventToVenue)
 
+// app.put('/comics/:id/removeEvent', ComicController.removeEventFromComic)
+// app.put('/venues/:id/removeEvent', VenueController.removeEventFromVenue)
 
 //DELETE
 app.delete('/events/:id', EventController.deleteEvent)
