@@ -34,7 +34,36 @@ let formButton = document.querySelector('#display-form')
 let hostOptions = document.querySelector('#host-options')
 let venueOptions = document.querySelector('#venue-options')
 
+// let eventObjectArray 
+// let comicObjectArray 
+// let venueObjectArray
+
 /*-------------------------------- Functions --------------------------------*/
+
+function fillForm() {
+    const name = document.getElementById('name')
+    const type = document.getElementById('type')
+    const logo = document.getElementById('logo')
+    const location = document.getElementById('location')
+    const time = document.getElementById('time')
+    const weekday = document.getElementById('weekday')
+    const frequency = document.getElementById('frequency')
+    const details = document.getElementById('details')
+    const link = document.getElementById('link')
+    const hosts = document.getElementById('hosts')
+    const venue = document.getElementById('venue')
+
+    name.value = "Bill's show"
+    type.value = "Mic"
+    location.value = "Atlanta"
+    time.value = "7:30 PM"
+    weekday.value = "Sunday"
+    frequency.value = "weekly"
+    details.value = "sign up in person"
+    venue.value = "Lucky Dog"
+    hosts.value = "Billy Bob"
+
+}
 
 async function refresh() {
     
@@ -52,6 +81,8 @@ async function refresh() {
     hostOptions.innerHTML = ''
     venueOptions.innerHTML = ''
 
+
+
       try {
         let eventResponse = await axios.get(`http://localhost:3001/events`);
         let comicResponse = await axios.get(`http://localhost:3001/comics`);
@@ -61,9 +92,12 @@ async function refresh() {
         eventObjectArray = eventResponse.data //assuming it's an array
         comicObjectArray = comicResponse.data //assuming it's an array
         venueObjectArray = venueResponse.data //assuming it's an array
-        console.log(eventObjectArray)
-        console.log(comicObjectArray)
-        console.log(venueObjectArray)
+        // console.log(eventObjectArray)
+        // console.log(comicObjectArray)
+        // console.log(venueObjectArray)
+        // console.log(`${eventObjectArray.length} shows are ${eventObjectArray}`)
+        // console.log(`${comicObjectArray.length} comics are ${comicObjectArray}`)
+        // console.log(`${venueObjectArray.length} venues are ${venueObjectArray}`)
 
 
         for (const comicObject of comicObjectArray) {
@@ -330,6 +364,7 @@ async function updateEvent(eventObject) {
     const frequency = document.getElementById('frequencyUpdate').value;
     const details = document.getElementById('detailsUpdate').value;
     const link = document.getElementById('linkUpdate').value;
+    
     try {
         const response = await fetch(`http://localhost:3001/events/${eventObject._id}`, {
           method: 'PUT',
@@ -387,6 +422,40 @@ async function deleteEvent(eventObject) {
         }
       }
 
+      async function addEventToVenue(eventObject,venueObject) {
+        // event.preventDefault(); // Prevent the default form submission
+    
+        let venueArray = venueObject.eventsHeld
+        venueArray.push(eventObject._id)
+        let eventsHeld = venueArray
+        
+        try {
+            const response = await fetch(`http://localhost:3001/venues/${venueObject._id}`, {
+              method: 'PUT',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({name, address, capacity, eventsHeld }),
+            });
+            refresh()
+        
+            if (response.ok) {
+                const contentType = response.headers.get('content-type');
+                if (contentType && contentType.includes('application/json')) {
+                  const result = await response.json();
+                  console.log('Element updated:', result);
+                } else {
+                  const result = await response.text();
+                  console.log('Element updated:', result);
+                }
+              } else {
+                console.error('Failed to update element:', response.statusText);
+              }
+            } catch (error) {
+              console.error('Error:', error);
+            }
+          }
+
 /*----------------------------- Event Listeners -----------------------------*/
 
 // buttonElement.addEventListener('click', myFunction)
@@ -394,6 +463,7 @@ async function deleteEvent(eventObject) {
 
 document.addEventListener('DOMContentLoaded', async ()=> {
     refresh()
+    fillForm()
 })
 
 formButton.addEventListener('click',  (event) => {
@@ -420,21 +490,39 @@ const weekday = document.getElementById('weekday').value;
 const frequency = document.getElementById('frequency').value;
 const details = document.getElementById('details').value;
 const link = document.getElementById('link').value;
+
 const venueName = document.getElementById('venue').value;
 const venueObject = venueObjectArray.find(obj => obj.name === venueName);
 const venue = venueObject._id
+console.log(`Venue is ${venue}`)
+
+const hostName = document.getElementById('hosts').value;
+const hostObject = comicObjectArray.find(obj => obj.name === hostName);
+const host = hostObject._id
+console.log(`host is ${host}`)
 
 try {
-  const response = await fetch('http://localhost:3001/events', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({name, type, logo, location, time, weekday, frequency, details, link, venue }),
-  });
+    const response = await fetch('http://localhost:3001/events', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        // body: JSON.stringify({name, type, logo, location, time, weekday, frequency, details, link, venue }),
+        body: JSON.stringify({name, type, logo, location, time, weekday, frequency, details, link, hosts: [host], venue }),
+    });
+    
+    console.log(response)
 
-  refresh()
-  newEventForm.reset()
+    // const hostResponse = await fetch(`http://localhost:3001/comics/${host}`, {
+    //     method: 'PUT',
+    //     headers: {
+    //         'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify({eventsHosted: [newEvent._id]}),
+    // });
+
+    refresh()
+    newEventForm.reset()
 
   if (response.ok) {
     const result = await response.json();
@@ -445,6 +533,7 @@ try {
 } catch (error) {
   console.error('Error:', error);
 }
+
 
   
 });
