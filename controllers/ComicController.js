@@ -61,6 +61,19 @@ const updateComic = async (req, res) => {
     }
 }
 
+const addEventToComic = async (req, res) => {
+    try {
+        const comic = await Comic.findByIdAndUpdate(
+            req.params.id,
+            { $push: { eventsHosted: req.body.eventsHosted } },
+            { new: true }
+        );
+        res.status(200).json(comic);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+}
+
 //delete
 const deleteComic = async (req, res) => {
     try {
@@ -83,5 +96,6 @@ module.exports = {
     getComicById, 
     createComic, 
     updateComic, 
+    addEventToComic,
     deleteComic,
 }

@@ -511,25 +511,32 @@ try {
         body: JSON.stringify({name, type, logo, location, time, weekday, frequency, details, link, hosts: [host], venue }),
     });
     
-    console.log(response)
+    if (response.ok) {
+        // const newEvent = await response.json();
+        console.log('Element added');
+    } else {
+        console.error('Failed to add element:', response.statusText);
+    }
 
-    // const hostResponse = await fetch(`http://localhost:3001/comics/${host}`, {
-    //     method: 'PUT',
-    //     headers: {
-    //         'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify({eventsHosted: [newEvent._id]}),
-    // });
+    const newEvent = await response.json();
 
-    refresh()
-    newEventForm.reset()
+    // Update the comic with the new event's ID
+    const comicUpdateResponse = await fetch(`http://localhost:3001/comics/${host}/addEvent`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ eventsHosted: newEvent._id }),
+    });
 
-  if (response.ok) {
-    const result = await response.json();
-    console.log('Element added:', result);
-  } else {
-    console.error('Failed to add element:', response.statusText);
-  }
+    if (!comicUpdateResponse.ok) {
+        throw new Error('Failed to update car with new driver');
+    }
+
+        refresh()
+        newEventForm.reset()
+
+
 } catch (error) {
   console.error('Error:', error);
 }
