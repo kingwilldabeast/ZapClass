@@ -519,6 +519,8 @@ try {
     }
 
     const newEvent = await response.json();
+    console.log(newEvent)
+    console.log(newEvent.newObject._id)
 
     // Update the comic with the new event's ID
     const comicUpdateResponse = await fetch(`http://localhost:3001/comics/${host}/addEvent`, {
@@ -526,7 +528,7 @@ try {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ eventsHosted: newEvent._id }),
+        body: JSON.stringify({ eventsHosted: newEvent.newObject._id }),
     });
 
     if (!comicUpdateResponse.ok) {
