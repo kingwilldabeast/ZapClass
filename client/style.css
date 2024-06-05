@@ -17,8 +17,8 @@ body {
 #header {
     display: flex;
     flex-direction: column;
-    align-items: center; 
-    /* border: 1px solid pink; */
+    align-items: flex-start;
+    margin-bottom: 20px; 
 }
 
 h1 {
@@ -28,8 +28,13 @@ h1 {
     /* border: 1px solid #E1CA96; */
     border-radius: 10px;
     padding: 10px;
-    font-weight: 400;
+    font-size: 60px;
+    font-family: "Tourney", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
     font-style: normal;
+    font-variation-settings:
+      "wdth" 200;
    
 }
 
@@ -48,16 +53,27 @@ main {
     justify-content: space-around;
 }
 
-#display-form {
+#display-form-button {
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+#display-form-button:hover {
+    border: 1px solid yellow;
+}
+
+#cancel-button, #submit-button {
+    margin-top: 20px;
+    width: 200px;
     border-radius: 10px;
 }
 
 #new-event-form {
     /* background-color: #0F8B8D; */
     border: 2px solid rgb(38, 43, 45);
-    padding: 10px;
+    padding: 30px;
     border-radius: 10px;
-    width: 300px;
+    width: 250px;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -66,6 +82,8 @@ main {
     /* display: block; */
     /* display: flex; */
     flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
 
 }
 
@@ -85,6 +103,11 @@ main {
     margin: 10px;
     text-align: center;
     width: 200px;
+    font-size: 20px;
+}
+
+.day-title:hover {
+    color: yellow;
 }
 
 .shows-container {
@@ -101,8 +124,8 @@ main {
 }
 
 .show-card {
-    background-color: #DAD2D8;
-    /* border: 1px solid blue; */
+    /* background-color: #DAD2D8; */
+    border: 2px solid ;
     border-radius: 10px;
     width: 300px;
     height: 300px;
@@ -117,6 +140,11 @@ main {
     cursor: pointer;
 }
 
+.show-card:hover {
+    border: 2px solid yellow;
+
+}
+
 .show-logo {
     width: 150px;
     height: 150px;
@@ -126,6 +154,13 @@ main {
 
 .show-host, .show-venue {
     text-decoration: underline;
+}
+
+.show-host:hover {
+    color: yellow;
+}
+.show-venue:hover {
+    color: yellow;
 }
 
 .expanded-card {
@@ -159,7 +194,7 @@ body {
     color: #4A4238;
 }
 
-#display-form, .expanded-card, .day-title, #new-event-form {
+#display-form-button, #cancel-button, #submit-button, .expanded-card, .day-title, #new-event-form {
     background-color: #97DB4F;
     color: #4D5359;
 }

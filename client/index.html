@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comedy</title>
-    <!-- <link href="https://fonts.googleapis.com/css?family=Inconsolata:700|Play" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata:700|Play" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tourney:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script defer src="script.js"></script>
     <link rel="stylesheet" href="style.css">
@@ -15,7 +16,7 @@
     <div id="header">
 
         <h1 id="head">Comedy Mics and Shows</h1>
-        <button id="display-form">Add Show or Mic</button>
+        <button id="display-form-button">Add Show or Mic</button>
     </div>
 
     <div>
@@ -81,9 +82,9 @@
                     <datalist id="venue-options">
                     </datalist>    
                 
-                <button type="submit">Create Event</button>
-              </form>
-
+                <button type="submit" id="submit-button">Create Event</button>
+                <button type="button" id="cancel-button">Cancel</button>
+            </form>
 
         </span>
         

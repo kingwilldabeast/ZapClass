@@ -3,18 +3,7 @@
 
 /*---------------------------- Variables (state) ----------------------------*/
 
-
-// let brandNameArray = []
-// let brandLowerNameArray = []
-// let brandIDArray = []
-
-
 /*------------------------ Cached Element References ------------------------*/
-
-// const buttonElement = document.querySelector('#myButtonID')
-
-// let button = document.querySelector("#searchButton")
-// let container = document.querySelector("#container")
 
 let sundayShows = document.querySelector("#Sunday");
 let mondayShows = document.querySelector("#Monday");
@@ -30,7 +19,7 @@ let showContainers = document.querySelectorAll(".shows-container")
 let body = document.querySelector('body')
 
 let newEventForm = document.querySelector('#new-event-form')
-let formButton = document.querySelector('#display-form')
+let formButton = document.querySelector('#display-form-button')
 let hostOptions = document.querySelector('#host-options')
 let venueOptions = document.querySelector('#venue-options')
 
@@ -462,6 +451,8 @@ async function createEvent() {
 
         refresh()
         newEventForm.reset()
+        newEventForm.style.display = "none"
+
 
     } catch (error) {
     console.error('Error:', error);
@@ -533,3 +524,7 @@ document.getElementById('new-event-form').addEventListener('submit', function(ev
 
 });
 
+document.getElementById('cancel-button').addEventListener('click', () =>{
+    const form = document.getElementById('new-event-form')
+    form.style.display = "none"
+})
