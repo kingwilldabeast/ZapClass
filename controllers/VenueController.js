@@ -61,6 +61,7 @@ const updateVenue = async (req, res) => {
     }
 }
 
+// Function to add event to venue
 const addEventToVenue = async (req, res) => {
     try {
         const venue = await Venue.findByIdAndUpdate(
@@ -73,6 +74,19 @@ const addEventToVenue = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 }
+
+// Function to remove event from venue
+// const removeEventFromVenue = async (eventId) => {
+//     try {
+//         await Venue.updateMany(
+//             { eventsHeld: eventId },
+//             { $pull: { eventsHeld: eventId } }
+//         );
+//     } catch (error) {
+//         console.error('Error removing event from venue:', error.message);
+//     }
+// };
+
 //delete
 const deleteVenue = async (req, res) => {
     try {
@@ -96,5 +110,6 @@ module.exports = {
     createVenue, 
     updateVenue, 
     addEventToVenue,
+    // removeEventFromVenue,
     deleteVenue,
 }

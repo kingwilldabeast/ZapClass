@@ -129,45 +129,45 @@ async function refresh() {
             }
     
             const newName = document.createElement('div');
-            newName.classList.add('show-name')
+            // newName.classList.add('show-name')
             newName.innerText = eventObject.name
             newCard.appendChild(newName)
 
             const newType = document.createElement('div');
-            newType.classList.add('show-type')
+            // newType.classList.add('show-type')
             newType.innerText = eventObject.type
             newCard.appendChild(newType)
 
             const newLocation = document.createElement('div');
-            newLocation.classList.add('show-location')
+            // newLocation.classList.add('show-location')
             newLocation.innerText = eventObject.location
             newCard.appendChild(newLocation)
 
             const newTime = document.createElement('div');
-            newTime.classList.add('show-location')
+            // newTime.classList.add('show-location')
             newTime.innerText = eventObject.time
             newCard.appendChild(newTime)
 
             const newWeekday = document.createElement('div');
-            newWeekday.classList.add('show-location')
+            // newWeekday.classList.add('show-location')
             newWeekday.innerText = eventObject.weekday
             newCard.appendChild(newWeekday)
 
             const newFrequency = document.createElement('div');
-            newFrequency.classList.add('show-frequency')
+            // newFrequency.classList.add('show-frequency')
             newFrequency.innerText = eventObject.frequency
             newCard.appendChild(newFrequency)
 
             if (eventObject.details) {
                 const newDetails = document.createElement('div');
-                newDetails.classList.add('show-details')
+                // newDetails.classList.add('show-details')
                 newDetails.innerText = eventObject.details
                 newCard.appendChild(newDetails)
             }
 
             if (eventObject.link) {
                 const newLink = document.createElement('div');
-                newLink.classList.add('show-link')
+                // newLink.classList.add('show-link')
                 newLink.innerText = eventObject.link
                 newCard.appendChild(newLink)
             }
@@ -188,7 +188,7 @@ async function refresh() {
     
             if (eventObject.venue) {
                 const newVenue = document.createElement('div');
-                newVenue.classList.add('show-link')
+                newVenue.classList.add('show-venue')
                 const venueObject = venueObjectArray.find(obj => obj._id.toString() === eventObject.venue);
                 newVenue.innerText = `Venue: ${venueObject.name}`
                 newVenue.addEventListener('click', function(event) {
@@ -253,10 +253,10 @@ function linkToVenue(venueID) {
 
 function displayCreateForm() {
     console.log(newEventForm.style.display)
-    if (newEventForm.style.display == "block") {
+    if (newEventForm.style.display == "flex") {
         newEventForm.style.display = "none"
     } else {
-        newEventForm.style.display = "block"
+        newEventForm.style.display = "flex"
     }
 
 }
@@ -480,7 +480,14 @@ async function deleteEvent(eventObject) {
         refresh()
     
         if (response.ok) {
+            // console.log(eventObject._id)
+            // console.log(eventObject.venue)
+            // console.log(eventObject.hosts)
+            // console.log(`event oJbect is ${eventObject._id}`)
+            // console.log(`event's venue is ${eventObject.venue}`)
+            // console.log(`event hosts are ${eventObject.hosts}`)
             //call remove event from venue function?
+            
             const contentType = response.headers.get('content-type');
             if (contentType && contentType.includes('application/json')) {
               const result = await response.json();

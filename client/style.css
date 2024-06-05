@@ -3,58 +3,41 @@
 body {
     /* background-color: #626C66; */
     /* background-image: url('pokemon1.jpeg'); */
-    background-color: #ACA885;
+    font-family: "Major Mono Display", monospace;
+    background-color: #4A4238;
     background-repeat: repeat;
     background-size: auto;
     display: flex;
     flex-direction: column;
     align-items: center; 
-    justify-content: center;
+    /* justify-content: center; */
     
 }
 
+#header {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    /* border: 1px solid pink; */
+}
+
 h1 {
+    /* background-color: #4D5359; */
+    border: 1px solid orange;
+    /* color: #79C99E; */
     /* border: 1px solid #E1CA96; */
-    /* color: #E1CA96; */
-    color: #ACA885;
     border-radius: 10px;
-    background-color: #434A42;
     padding: 10px;
-    font-family: "Major Mono Display", monospace;
     font-weight: 400;
     font-style: normal;
    
 }
 
-/* .header {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-} */
-
-/* #inputBar {
-    background-color: #E1CA96;
-    border-radius: 5px;
-}
-
-#searchButton {
-    background-color: #626C66;
-    border-radius: 5px;
-} */
-
-/* #bikeDropdown {
-    /* display: none; 
-    background-color: #E1CA96;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); 
-    border-radius: 5px;
-} */
-
 main {
     width: auto;
     /* height: 500px; */
-    border: 1px solid red;
-    background-color: #918B76;
+    /* border: 1px solid red;
+    background-color: #0F8B8D; */
     border-radius: 10px;
     display: flex;
     margin: 10px;
@@ -65,17 +48,35 @@ main {
     justify-content: space-around;
 }
 
+#display-form {
+    border-radius: 10px;
+}
+
 #new-event-form {
-    /* display: none; */
-    display: block;
-    border: 1px solid rgb(23, 197, 241);
+    /* background-color: #0F8B8D; */
+    border: 2px solid rgb(38, 43, 45);
+    padding: 10px;
+    border-radius: 10px;
+    width: 300px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    /* display: block; */
+    /* display: flex; */
+    flex-direction: column;
 
 }
 
 .day-container {
+    background-color: #A8201A;
     border: 1px solid orange;
     border-radius: 10px;
     width: 1100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .day-title {
@@ -83,26 +84,28 @@ main {
     border-radius: 10px;
     margin: 10px;
     text-align: center;
+    width: 200px;
 }
 
 .shows-container {
+    /* background-color: #143642; */
+    /* border: 1px solid rgb(37, 228, 69); */
     /* display: none; */
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center; 
     justify-content: center;
-    border: 1px solid rgb(37, 228, 69);
-    margin: 10px;
+    /* margin: 10px; */
 
 }
 
 .show-card {
+    background-color: #DAD2D8;
+    /* border: 1px solid blue; */
+    border-radius: 10px;
     width: 300px;
     height: 300px;
-    border: 1px solid blue;
-    border-radius: 10px;
-    background-color: #626C66;
     /* background-color: #918B76; */
     /* background-color: #ACA885; */
     margin: 10px;
@@ -121,8 +124,8 @@ main {
     border-radius: 10px;
 }
 
-.show-host {
-    border: 1px solid pink;
+.show-host, .show-venue {
+    text-decoration: underline;
 }
 
 .expanded-card {
@@ -133,19 +136,30 @@ main {
     width: 300px;
     height: 300px;
     background-color: antiquewhite;
-    border: 1px solid rgb(139, 65, 236);
+    border: 2px solid rgb(42, 40, 45);
     border-radius: 10px;
     text-align: center;
 }
 
-/* .show-name {
-    border: 1px solid blue;
-    margin-top: 30px;
-    font-size: 20px;
-    color: #E1CA96;
-    background-color: #ACA885;
-    font-family: "Major Mono Display", monospace;
-    font-weight: 400;
-    font-style: normal;
-} */
 
+
+
+h1, .day-container {
+    background-color: #4A4238;
+    color: #97DB4F;
+}
+
+body {
+    background-color: #4D5359;
+
+}
+
+.show-card, .show-card {
+    background-color: #cdef8d;
+    color: #4A4238;
+}
+
+#display-form, .expanded-card, .day-title, #new-event-form {
+    background-color: #97DB4F;
+    color: #4D5359;
+}

@@ -72,6 +72,13 @@ const deleteEvent = async (req, res) => {
         const erasedObject = await Event.findByIdAndDelete(id)
         if (erasedObject) {
             return res.status(200).send("Event deleted");
+            //remove event ID from venue's array of event ID
+            //NOTE Venue is required on line 1
+            // await Venue.updateMany(
+            //     { eventsHeld: id },
+            //     { $pull: { eventsHeld: id } }
+            // );
+    
         }
 
         
