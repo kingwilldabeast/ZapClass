@@ -16,9 +16,12 @@
         <div>
             <h1 id="head">Comedian Directory</h1>
             <form>
-                <input for="search-button" type="text"  value="" placeholder="Search comedians!"  id="input-bar">
+                <input type="text" list="comic-options" value="" placeholder="Search comedians!"  id="input-bar" required>
                 <input type="button"  value="Search" id="search-button">
             </form>
+                <datalist id="comic-options">
+                    <!-- <option>Kyle James</option> -->
+                </datalist>
 
         </div>
         <div class="comic-card">

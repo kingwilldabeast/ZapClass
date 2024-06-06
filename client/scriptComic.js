@@ -11,6 +11,7 @@ const comicName = document.querySelector('#comic-name')
 const comicHeadshot = document.querySelector('#comic-headshot')
 const comicClip = document.querySelector('#comic-clip')
 const showsHostedElem = document.querySelector('.shows-container')
+const comicOptions = document.querySelector('#comic-options')
 /*-------------------------------- Functions --------------------------------*/
 
 // Obtain ID from whichever comic was clicked on previous page
@@ -31,7 +32,14 @@ async function refresh(comedianName) {
         comicObject = comicSingleResponse.data //assuming it's an array
         console.log(comicObject)
 
-        
+        comicOptions.innerHTML = ""
+        for (const comicObject of comicObjectArray) {
+            const newComicOption = document.createElement('option');
+            // newVenue.setAttribute('id',venueObject._id)
+            newComicOption.value = comicObject.name
+            comicOptions.appendChild(newComicOption)
+        }
+
         comicName.innerText = comicObject.name
         // comicHeadshot.innerText = comicObject.headshot
         if (comicObject.headshot) {
@@ -154,5 +162,7 @@ document.addEventListener('DOMContentLoaded', async ()=> {
 
 searchButton.addEventListener('click', () => {
     // findComedian()
-    refresh(input.value)
+    if (input.value) {
+        refresh(input.value)
+    }
 })
