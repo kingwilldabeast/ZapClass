@@ -68,6 +68,12 @@ main {
     border-radius: 10px;
 }
 
+#submit-button:hover, #cancel-button:hover, .button:hover {
+    color: yellow;
+}
+
+
+
 #new-event-form {
     /* background-color: #0F8B8D; */
     border: 2px solid rgb(38, 43, 45);
@@ -163,9 +169,7 @@ main {
     color: yellow;
 }
 
-.button:hover {
-    color: yellow;
-}
+
 
 .expanded-card {
     position: fixed;
@@ -173,7 +177,7 @@ main {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 500px;
-    height: 500px;
+    /* height: 500px; */
     padding: 10px;
     background-color: antiquewhite;
     border: 2px solid rgb(42, 40, 45);

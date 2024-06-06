@@ -278,7 +278,7 @@ function expand(eventObject) {
             const newImage = document.createElement('img');
             newImage.classList.add('show-logo')
             // console.log(eventObject.logo)
-            // newImage.setAttribute('src',eventObject.logo)
+            newImage.setAttribute('src',eventObject.logo)
             newSection.appendChild(newImage)
         }
 
@@ -451,6 +451,11 @@ async function updateEvent(eventObject) {
           body: JSON.stringify({name, type, logo, location, time, weekday, frequency, details, link }),
         });
         refresh()
+        //removechild 
+        if (document.querySelector('.expanded-card')) {
+            const oldSection = document.querySelector('.expanded-card')
+            body.removeChild(oldSection)
+        }
     
         if (response.ok) {
             const contentType = response.headers.get('content-type');
