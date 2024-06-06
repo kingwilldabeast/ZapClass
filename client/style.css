@@ -167,7 +167,7 @@ main {
     cursor: pointer;
 }
 
-.comic-card {
+.comic-card, .venue-card {
     /* background-color: #DAD2D8; */
     border: 2px solid ;
     border-radius: 10px;
@@ -197,7 +197,7 @@ main {
     border-radius: 10px;
 }
 
-#comic-headshot {
+#comic-headshot, #venue-image {
     width: 150px;
     /* height: 150px; */
     /* border: 1px solid rgb(139, 65, 236); */
@@ -248,7 +248,7 @@ body {
 
 }
 
-.show-card, .show-card, .comic-card {
+.show-card, .show-card, .comic-card, .venue-card {
     background-color: #cdef8d;
     color: #4A4238;
 }

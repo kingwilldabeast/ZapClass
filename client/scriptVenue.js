@@ -5,6 +5,7 @@
 /*------------------------ Cached Element References ------------------------*/
 
 const venueID = localStorage.getItem('storedVenueID')
+const venueImage = document.querySelector('#venue-image')
 const venueName = document.querySelector('#venue-name')
 const venueAddress = document.querySelector('#venue-address')
 const venueCapacity = document.querySelector('#venue-capacity')
@@ -30,6 +31,9 @@ async function refresh() {
         console.log(venueObject)
 
         
+        if (venueObject.image) {
+            venueImage.setAttribute('src',venueObject.image)
+        }
         venueName.innerText = venueObject.name
         venueAddress.innerText = venueObject.address
         venueCapacity.innerText = `Capacity: ${venueObject.capacity}`
