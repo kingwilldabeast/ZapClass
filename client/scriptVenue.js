@@ -32,7 +32,7 @@ async function refresh() {
         
         venueName.innerText = venueObject.name
         venueAddress.innerText = venueObject.address
-        venueCapacity.innerText = venueObject.capacity
+        venueCapacity.innerText = `Capacity: ${venueObject.capacity}`
         showsHostedArray = venueObject.eventsHeld
         console.log(`the shows hosted are ${showsHostedArray}`)
 
@@ -43,11 +43,11 @@ async function refresh() {
                 newCard.classList.add('show-card');
                 newCard.setAttribute('id',eventObject._id)
         
-                const newImage = document.createElement('img');
-                newImage.classList.add('show-logo')
-                // console.log(eventObject.logo)
-                // newImage.setAttribute('src',eventObject.logo)
-                newCard.appendChild(newImage)
+                // const newImage = document.createElement('img');
+                // newImage.classList.add('show-logo')
+                // // console.log(eventObject.logo)
+                // // newImage.setAttribute('src',eventObject.logo)
+                // newCard.appendChild(newImage)
         
                 const newName = document.createElement('div');
                 newName.classList.add('show-name')
@@ -74,42 +74,42 @@ async function refresh() {
                 newWeekday.innerText = eventObject.weekday
                 newCard.appendChild(newWeekday)
     
-                const newFrequency = document.createElement('div');
-                newFrequency.classList.add('show-frequency')
-                newFrequency.innerText = eventObject.frequency
-                newCard.appendChild(newFrequency)
+                // const newFrequency = document.createElement('div');
+                // newFrequency.classList.add('show-frequency')
+                // newFrequency.innerText = eventObject.frequency
+                // newCard.appendChild(newFrequency)
     
-                const newDetails = document.createElement('div');
-                newDetails.classList.add('show-details')
-                newDetails.innerText = eventObject.details
-                newCard.appendChild(newDetails)
+                // const newDetails = document.createElement('div');
+                // newDetails.classList.add('show-details')
+                // newDetails.innerText = eventObject.details
+                // newCard.appendChild(newDetails)
     
-                const newLink = document.createElement('div');
-                newLink.classList.add('show-link')
-                newLink.innerText = eventObject.link
-                newCard.appendChild(newLink)
+                // const newLink = document.createElement('div');
+                // newLink.classList.add('show-link')
+                // newLink.innerText = eventObject.link
+                // newCard.appendChild(newLink)
     
-                for (const hostObjectID of eventObject.hosts) {
-                    const newHost = document.createElement('div');
-                    newHost.classList.add('show-host')
-                    const comicObject = comicObjectArray.find(obj => obj._id.toString() === hostObjectID);
-                    newHost.innerText = `Host: ${comicObject.name}`
-                    newHost.addEventListener('click', function(event) {
-                    // console.log(hostObjectID)
-                    linkToComic(hostObjectID)
-                    })
-                    newCard.appendChild(newHost)
-                }
+                // for (const hostObjectID of eventObject.hosts) {
+                //     const newHost = document.createElement('div');
+                //     newHost.classList.add('show-host')
+                //     const comicObject = comicObjectArray.find(obj => obj._id.toString() === hostObjectID);
+                //     newHost.innerText = `Host: ${comicObject.name}`
+                //     newHost.addEventListener('click', function(event) {
+                //     // console.log(hostObjectID)
+                //     linkToComic(hostObjectID)
+                //     })
+                //     newCard.appendChild(newHost)
+                // }
         
-                const newVenue = document.createElement('div');
-                newVenue.classList.add('show-link')
-                const venueObject = venueObjectArray.find(obj => obj._id.toString() === eventObject.venue);
-                newVenue.innerText = `Venue: ${venueObject.name}`
-                newVenue.addEventListener('click', function(event) {
-                    // console.log(hostObjectID)
-                    linkToVenue(eventObject.venue)
-                    })
-                newCard.appendChild(newVenue)
+                // const newVenue = document.createElement('div');
+                // newVenue.classList.add('show-link')
+                // const venueObject = venueObjectArray.find(obj => obj._id.toString() === eventObject.venue);
+                // newVenue.innerText = `Venue: ${venueObject.name}`
+                // newVenue.addEventListener('click', function(event) {
+                //     // console.log(hostObjectID)
+                //     linkToVenue(eventObject.venue)
+                //     })
+                // newCard.appendChild(newVenue)
 
                 showsHostedElem.appendChild(newCard)
             }

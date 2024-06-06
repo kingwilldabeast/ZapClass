@@ -31,23 +31,26 @@ async function refresh() {
 
         
         comicName.innerText = comicObject.name
-        comicHeadshot.innerText = comicObject.headshot
+        // comicHeadshot.innerText = comicObject.headshot
+        if (comicObject.headshot) {
+            comicHeadshot.setAttribute('src',comicObject.headshot)
+        }
         comicClip.innerText = comicObject.clip
         showsHostedArray = comicObject.eventsHosted
-        console.log(`the shows hosted are ${showsHostedArray}`)
+        // console.log(`the shows hosted are ${showsHostedArray}`)
 
         for (const eventObject of eventObjectArray) {
             if (showsHostedArray.includes(eventObject._id)) {
-                console.log(`it has an id of ${eventObject._id}`)
+                // console.log(`it has an id of ${eventObject._id}`)
                 const newCard = document.createElement('div');
                 newCard.classList.add('show-card');
                 newCard.setAttribute('id',eventObject._id)
         
-                const newImage = document.createElement('img');
-                newImage.classList.add('show-logo')
-                // console.log(eventObject.logo)
+                // const newImage = document.createElement('img');
+                // newImage.classList.add('show-logo')
+                // // console.log(eventObject.logo)
                 // newImage.setAttribute('src',eventObject.logo)
-                newCard.appendChild(newImage)
+                // newCard.appendChild(newImage)
         
                 const newName = document.createElement('div');
                 newName.classList.add('show-name')
@@ -74,42 +77,42 @@ async function refresh() {
                 newWeekday.innerText = eventObject.weekday
                 newCard.appendChild(newWeekday)
     
-                const newFrequency = document.createElement('div');
-                newFrequency.classList.add('show-frequency')
-                newFrequency.innerText = eventObject.frequency
-                newCard.appendChild(newFrequency)
+                // const newFrequency = document.createElement('div');
+                // newFrequency.classList.add('show-frequency')
+                // newFrequency.innerText = eventObject.frequency
+                // newCard.appendChild(newFrequency)
     
-                const newDetails = document.createElement('div');
-                newDetails.classList.add('show-details')
-                newDetails.innerText = eventObject.details
-                newCard.appendChild(newDetails)
+                // const newDetails = document.createElement('div');
+                // newDetails.classList.add('show-details')
+                // newDetails.innerText = eventObject.details
+                // newCard.appendChild(newDetails)
     
-                const newLink = document.createElement('div');
-                newLink.classList.add('show-link')
-                newLink.innerText = eventObject.link
-                newCard.appendChild(newLink)
+                // const newLink = document.createElement('div');
+                // newLink.classList.add('show-link')
+                // newLink.innerText = eventObject.link
+                // newCard.appendChild(newLink)
     
-                for (const hostObjectID of eventObject.hosts) {
-                    const newHost = document.createElement('div');
-                    newHost.classList.add('show-host')
-                    const comicObject = comicObjectArray.find(obj => obj._id.toString() === hostObjectID);
-                    newHost.innerText = `Host: ${comicObject.name}`
-                    newHost.addEventListener('click', function(event) {
-                    // console.log(hostObjectID)
-                    linkToComic(hostObjectID)
-                    })
-                    newCard.appendChild(newHost)
-                }
+                // for (const hostObjectID of eventObject.hosts) {
+                //     const newHost = document.createElement('div');
+                //     newHost.classList.add('show-host')
+                //     const comicObject = comicObjectArray.find(obj => obj._id.toString() === hostObjectID);
+                //     newHost.innerText = `Host: ${comicObject.name}`
+                //     newHost.addEventListener('click', function(event) {
+                //     // console.log(hostObjectID)
+                //     linkToComic(hostObjectID)
+                //     })
+                //     newCard.appendChild(newHost)
+                // }
         
-                const newVenue = document.createElement('div');
-                newVenue.classList.add('show-link')
-                const venueObject = venueObjectArray.find(obj => obj._id.toString() === eventObject.venue);
-                newVenue.innerText = `Venue: ${venueObject.name}`
-                newVenue.addEventListener('click', function(event) {
-                    // console.log(hostObjectID)
-                    linkToVenue(eventObject.venue)
-                    })
-                newCard.appendChild(newVenue)
+                // const newVenue = document.createElement('div');
+                // newVenue.classList.add('show-link')
+                // const venueObject = venueObjectArray.find(obj => obj._id.toString() === eventObject.venue);
+                // newVenue.innerText = `Venue: ${venueObject.name}`
+                // newVenue.addEventListener('click', function(event) {
+                //     // console.log(hostObjectID)
+                //     linkToVenue(eventObject.venue)
+                //     })
+                // newCard.appendChild(newVenue)
 
                 showsHostedElem.appendChild(newCard)
             }
@@ -122,6 +125,7 @@ async function refresh() {
         console.error('Error fetching data:', error);  
     }
 }
+
 
 function linkToComic(hostID) {
     // nameCopy = brandNameArray[brandIDArray.indexOf(idCopy)]
