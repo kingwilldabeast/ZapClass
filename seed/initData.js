@@ -22,7 +22,7 @@ const main = async () => {
         {
             name: "Laughs Improv",
             type: "show", //show or mic
-            logo: "logo1.png",
+            logo: "https://images.ctfassets.net/6pezt69ih962/4YCFQWuXSrI6rMihbksALf/f85835075208d5e71efb4d19cb3236c9/shulz.jpg?h=1000&fm=webp&q=90",
             location: "123 Main St",
             time: "7 PM",
             weekday: "Friday",
@@ -37,13 +37,13 @@ const main = async () => {
     const comicObjects = [
         {
             name: "Kyle James",
-            headshot: "headshot.png",
+            headshot: "https://images.squarespace-cdn.com/content/v1/631ba8eed2196a6795698665/3690ca61-6a9d-4c93-a2a5-83a5f2aa1648/2022-08-16-Trinet-0540-Martinez-Juan.jpg",
             clip: "https:youtube.com",
             eventsHosted: [eventArray[0]._id]
         },
         {
             name: "Billy Bob",
-            headshot: "headshot.png",
+            headshot: "https://christophertoddstudios.com/wp-content/uploads/2022/12/DuqueLaw-3-998x1024.jpg",
             clip: "https:youtube.com",
             eventsHosted: [eventArray[0]._id]
         }
