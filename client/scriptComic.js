@@ -4,7 +4,9 @@
 
 /*------------------------ Cached Element References ------------------------*/
 
-const hostID = localStorage.getItem('storedHostID')
+const hostName = localStorage.getItem('storedHostName')
+const input = document.querySelector('#input-bar')
+const searchButton = document.querySelector('#search-button')
 const comicName = document.querySelector('#comic-name')
 const comicHeadshot = document.querySelector('#comic-headshot')
 const comicClip = document.querySelector('#comic-clip')
@@ -13,7 +15,7 @@ const showsHostedElem = document.querySelector('.shows-container')
 
 // Obtain ID from whichever comic was clicked on previous page
 // const nameCopy = localStorage.getItem('comicName')
-async function refresh() {
+async function refresh(comedianName) {
 
     showsHostedElem.innerHTML = ''
     try {
@@ -25,7 +27,7 @@ async function refresh() {
         comicObjectArray = comicResponse.data //assuming it's an array
         venueObjectArray = venueResponse.data //assuming it's an array
         
-        let comicSingleResponse = await axios.get(`http://localhost:3001/comics/${hostID}`);
+        let comicSingleResponse = await axios.get(`http://localhost:3001/comicsname/${comedianName}`);
         comicObject = comicSingleResponse.data //assuming it's an array
         console.log(comicObject)
 
@@ -147,5 +149,10 @@ function linkToVenue(venueID) {
 /*----------------------------- Event Listeners -----------------------------*/
 
 document.addEventListener('DOMContentLoaded', async ()=> {
-    refresh()
+    refresh(hostName)
+})
+
+searchButton.addEventListener('click', () => {
+    // findComedian()
+    refresh(input.value)
 })

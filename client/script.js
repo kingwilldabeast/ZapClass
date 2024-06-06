@@ -222,11 +222,11 @@ async function refresh() {
     }
 
 
-function linkToComic(hostID) {
+function linkToComic(hostName) {
     // nameCopy = brandNameArray[brandIDArray.indexOf(idCopy)]
-    localStorage.setItem('storedHostID', hostID);
+    localStorage.setItem('storedHostName', hostName);
     // localStorage.setItem('brandName', nameCopy);
-    console.log(hostID)
+    // console.log(hostID)
     // console.log(nameCopy)
     window.open('indexComic.html', '_blank');
 }
@@ -334,7 +334,7 @@ function expand(eventObject) {
                 newHost.innerText = `Host: ${comicObject.name}`
                 newHost.addEventListener('click', function(event) {
                 // console.log(hostObjectID)
-                linkToComic(hostObjectID)
+                linkToComic(comicObject.name)
                 })
                 newSection.appendChild(newHost)
             }

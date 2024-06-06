@@ -30,6 +30,7 @@ app.get('/venues', VenueController.getAllVenues)
 
 app.get('/events/:id', EventController.getEventById)
 app.get('/comics/:id', ComicController.getComicById)
+app.get('/comicsname/:name', ComicController.getComicByName)
 app.get('/venues/:id', VenueController.getVenueById)
 
 // app.get('/dogsName/:id', dogController.getDogName)

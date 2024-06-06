@@ -28,6 +28,22 @@ const getComicById = async (req, res) => {
     }
 }
 
+const getComicByName = async (req, res) => {
+    try {
+        const { name } = req.params
+        const singleObject = await Comic.findOne({name: name})
+        if (singleObject) {
+            return res.json(singleObject)
+        }
+        return res.status(404).send(`that Comic doesn't exist`)
+    } catch (error) {
+        if (error.name === 'CastError' && error.kind === 'ObjectId') {
+            return res.status(404).send(`That Comic doesn't exist`)
+        }
+        return res.status(500).send(error.message);
+    }
+}
+
 //create
 const createComic = async (req, res) => {
     try {
@@ -94,6 +110,7 @@ const deleteComic = async (req, res) => {
 module.exports = {
     getAllComics, 
     getComicById, 
+    getComicByName,
     createComic, 
     updateComic, 
     addEventToComic,

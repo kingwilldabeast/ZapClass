@@ -22,7 +22,7 @@ const main = async () => {
         {
             name: "Haha Show",
             type: "mic", //show or mic
-            logo: "https://images.ctfassets.net/6pezt69ih962/4YCFQWuXSrI6rMihbksALf/f85835075208d5e71efb4d19cb3236c9/shulz.jpg?h=1000&fm=webp&q=90",
+            logo: "https://i0.wp.com/www.atlantaonthecheap.com/wp-content/uploads/2019/03/comedy-show-e1551978605663.jpg?resize=600%2C399&ssl=1",
             location: "123 Main St",
             time: "7 PM",
             weekday: "Sunday",
@@ -33,7 +33,7 @@ const main = async () => {
         {
             name: "Laughs Improv",
             type: "show", //show or mic
-            logo: "https://images.ctfassets.net/6pezt69ih962/4YCFQWuXSrI6rMihbksALf/f85835075208d5e71efb4d19cb3236c9/shulz.jpg?h=1000&fm=webp&q=90",
+            logo: "https://runaces.com/wp-content/uploads/2021/07/Comedy-Shows_1170x600-1024x525.jpg",
             location: "123 Main St",
             time: "7 PM",
             weekday: "Sunday",
@@ -44,7 +44,7 @@ const main = async () => {
         {
             name: "Crazyhorse",
             type: "mic", //show or mic
-            logo: "https://images.ctfassets.net/6pezt69ih962/4YCFQWuXSrI6rMihbksALf/f85835075208d5e71efb4d19cb3236c9/shulz.jpg?h=1000&fm=webp&q=90",
+            logo: "https://www.hudsonnh.gov/sites/default/files/styles/gallery500/public/imageattachments/recreation/page/42738/original-comedy.jpg?itok=S_Qv_UOJ",
             location: "123 Main St",
             time: "7 PM",
             weekday: "Sunday",
@@ -55,7 +55,7 @@ const main = async () => {
         {
             name: "Wild Times",
             type: "show", //show or mic
-            logo: "https://images.ctfassets.net/6pezt69ih962/4YCFQWuXSrI6rMihbksALf/f85835075208d5e71efb4d19cb3236c9/shulz.jpg?h=1000&fm=webp&q=90",
+            logo: "https://www.shutterstock.com/image-vector/comedy-show-theater-scene-red-600nw-1069556927.jpg",
             location: "123 Main St",
             time: "7 PM",
             weekday: "Friday",
@@ -66,7 +66,7 @@ const main = async () => {
         {
             name: "Lazy Oaf",
             type: "mic", //show or mic
-            logo: "https://images.ctfassets.net/6pezt69ih962/4YCFQWuXSrI6rMihbksALf/f85835075208d5e71efb4d19cb3236c9/shulz.jpg?h=1000&fm=webp&q=90",
+            logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT23mTw-qN_zGXfUluzHWcZdlnGS5MBRPVb3kQ-cSMbA-ULIMIECqkkRHpSWAFblKpe8iU&usqp=CAU",
             location: "123 Main St",
             time: "7 PM",
             weekday: "Friday",
@@ -77,7 +77,7 @@ const main = async () => {
         {
             name: "Funday",
             type: "show", //show or mic
-            logo: "https://images.ctfassets.net/6pezt69ih962/4YCFQWuXSrI6rMihbksALf/f85835075208d5e71efb4d19cb3236c9/shulz.jpg?h=1000&fm=webp&q=90",
+            logo: "https://assets.thehansindia.com/h-upload/feeds/2019/04/25/168075-stand-up-comedy-show.jpg",
             location: "123 Main St",
             time: "7 PM",
             weekday: "Friday",
