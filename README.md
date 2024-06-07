@@ -4,15 +4,25 @@ This is a database of local comedy shows, open mics, comedians, and venues.
 
 ## Shows and Open Mics
 
-The comedy shows and open mics will display the address, the host, the start and end time, the cost, the day of week, the frequency, the submission link, and the ticket link.
+The comedy shows and open mics will display the address, the host, the start time, and the frequency. Events will be organized by day of week. This will be the landing page. It will allow the user to create a new event, or update an event, or delete an event.
+
+![landing page displaying event info](assets/mockup-landing-page.png)
+
+![expanded view of an event](assets/mockup-expanded-view.png)
+
+![Form to create new event](assets/mockup-new-event.png)
 
 ## Comedians
 
-The comedians model will list comedians, and display their websites, headshots, and video clips, if applicable. It will also link to a list array of shows they host.
+The comedians model will list the comedians, and display their names and headshots. It will be searchable. It will also display a list of shows they host.
+
+![Vomic directory](assets/mockup-comic.png)
 
 ## Venues
 
-The venues model will list the venues, along with their address and seating capacity. It will also display a list array of the shows that are hosted there.
+The venues model will list the venues, along with their address and seating capacity. It will also display a list of the shows that are hosted there.
+
+![Venue directory](assets/mockup-venue.png)
 
 ## Relationships
 
@@ -26,14 +36,15 @@ Shows will have a many to one relationship with venues. Each is run at one venue
 4. AAUIWT view all comedians and related data.
 5. AAUIWT view all venues and related data.
 6. AAUIWT use backend ThunderClient to create, update, or delete mics, shows, comedians, and venues.
+2. AAUIWT filter by day of week.
+8. AAUIWT click on an event and see an expanded section with extra details.
+9. AAUIWT link to a venue or comic from the event.
 
 ## Stretch Goals
 
 1. AAUIWT use frontend HTML to create, update, or delete mics, shows, comedians, and venues.
-7. AAUIWT add headshot links or video links from existing webpages to a comedian profile.
-2. AAUIWT filter by day of week.
+7. AAUIWT add headshot links or video links to a comedian profile.
 3. AAUIWT filter by open mic or show.
-8. AAUIWT click on a show, mic, comedian, or venue and see an expanded page with extra details.
 1. AAUIWT have the show frequency calculate and display the date of the next occurence of the show. 
 
 ## ERD 
@@ -45,3 +56,6 @@ Shows will have a many to one relationship with venues. Each is run at one venue
 ![event homepage mockup](assets/event-mockup.png)
 
 ![comedian database mockup](assets/comedian-mockup.png)
+
+### Technologies Used
+* referenced ChatGPT for front end CRUD functionality
