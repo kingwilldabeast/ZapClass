@@ -58,4 +58,7 @@ Shows will have a many to one relationship with venues. Each is run at one venue
 ![comedian database mockup](assets/comedian-mockup.png)
 
 ### Technologies Used
-* referenced ChatGPT for front end CRUD functionality
+referenced ChatGPT for the following:
+* front end CRUD functionality
+* form input 
+* input dropdowns

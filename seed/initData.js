@@ -23,7 +23,7 @@ const main = async () => {
             name: "Haha Show",
             type: "mic", //show or mic
             logo: "https://i0.wp.com/www.atlantaonthecheap.com/wp-content/uploads/2019/03/comedy-show-e1551978605663.jpg?resize=600%2C399&ssl=1",
-            location: "123 Main St",
+            location: "477 Main St",
             time: "7 PM",
             weekday: "Sunday",
             frequency: "weekly",
@@ -34,7 +34,7 @@ const main = async () => {
             name: "Laughs Improv",
             type: "show", //show or mic
             logo: "https://runaces.com/wp-content/uploads/2021/07/Comedy-Shows_1170x600-1024x525.jpg",
-            location: "123 Main St",
+            location: "274 Spencer St",
             time: "7 PM",
             weekday: "Sunday",
             frequency: "weekly",
@@ -45,7 +45,7 @@ const main = async () => {
             name: "Crazyhorse",
             type: "mic", //show or mic
             logo: "https://www.hudsonnh.gov/sites/default/files/styles/gallery500/public/imageattachments/recreation/page/42738/original-comedy.jpg?itok=S_Qv_UOJ",
-            location: "123 Main St",
+            location: "8600 3rd St",
             time: "7 PM",
             weekday: "Sunday",
             frequency: "weekly",
